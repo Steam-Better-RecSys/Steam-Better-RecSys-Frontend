@@ -1,83 +1,80 @@
 <template>
-  <div class="card pa-5">
-    <div class="wrapper d-flex justify-space-between align-center">
-      <div class="left-slide d-flex flex-row justify-center align-center">
+  <div class="d-flex justify-center align-content-center">
+    <div class="left-panel h-100 d-flex justify-center align-center flex-column pa-4">
+      <v-btn class="button dislike rounded-t-pill w-100">
+        <v-icon class="mr-2" icon="far fa-thumbs-down"/>
         Dislike
+      </v-btn>
+      <v-btn class="ban rounded-b-pill w-100">
+        <v-icon class="mr-2" icon="fas fa-ban"/>
+        Block
+      </v-btn>
+    </div>
+    <div class="wrapper">
+      <div class="card pa-8">
+        <div class="img-wrapper d-flex justify-center mb-3">
+          <img src="src/assets/hero.avif" alt="">
+        </div>
+        <div class="desc-wrapper">
+          <h1>Cult of the Lamb</h1>
+          <p>Cultivate your own cult in the lands of false prophets, travel through the mysterious corners of the
+            forest,
+            gather loyal followers around you and spread your word to the masses to make your cult the only one.</p>
+        </div>
       </div>
-      <div class="right-slide d-flex justify-center align-center">
+    </div>
+    <div class="right-panel h-100 d-flex justify-center align-center flex-column pa-4">
+      <v-btn class="button dislike rounded-t-pill w-100">
         Like
-      </div>
+        <v-icon class="ml-2" icon="far fa-thumbs-up"/>
+      </v-btn>
+      <v-btn class="ban rounded-b-pill w-100">
+        Wishlist
+        <v-icon class="ml-2" icon="far fa-heart"/>
+      </v-btn>
     </div>
-    <div class="d-flex justify-center mb-3">
-      <img src="src/assets/hero.avif" alt="">
-    </div>
-
-    <h1>Cult of the Lamb</h1>
-    <p>Cultivate your own cult in the lands of false prophets, travel through the mysterious corners of the forest,
-      gather loyal followers around you and spread your word to the masses to make your cult the only one.</p>
-
   </div>
-
+  <div>
+    <v-btn class="rounded-pill">
+      Skip
+      <v-icon icon="fas fa-forward" class="ml-2"></v-icon>
+    </v-btn>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "RecommendationCard"
-
+  name: "RecommendationCard",
 }
 </script>
 
 <style scoped>
 .card {
-  height: 62%;
-  width: 50%;
   background: rgb(37, 46, 59);
   border: 1px solid slategrey;
   border-radius: 30px;
-  color: white
+  color: white;
+  width: fit-content;
+  height: fit-content;
+}
+
+.img-wrapper {
+  width: auto;
+  height: auto;
 }
 
 img {
-  height: 10% !important;
-  width: 100%;
-  border-radius: 20px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
-.wrapper{
-  position: absolute;
-  width: 47.6%;
-  height: 57.5%;
+.wrapper {
+  width: 50%;
+  height: 50%;
 }
 
-.left-slide {
-  background: none;
-  opacity: 0;
-  width: 15%;
-  height:100% ;
+.left-panel, .right-panel {
+  width: 200px;
 }
 
-.left-slide:hover {
-  background: rgba(112, 128, 144, 0.5);
-  transition: ease-out 0.3s;
-  color: red;
-  font-size: 20px;
-  font-weight: bold;
-  opacity: 1;
-}
-
-.right-slide{
-  height: 100%;
-  width: 15%;
-  background: none;
-  opacity: 0;
-}
-
-.right-slide:hover {
-  background: rgba(112, 128, 144, 0.5);
-  transition: ease-out 0.3s;
-  color: red;
-  font-size: 20px;
-  font-weight: bold;
-  opacity: 1;
-}
 </style>
