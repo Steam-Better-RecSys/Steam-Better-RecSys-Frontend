@@ -3,7 +3,7 @@
     <div class="wrapper pt-8" id="collapseSorting">
       <v-row class="row main-row">
         <!-- Sorting -->
-        <v-col class="d-flex flex-column sort-col" cols="2">
+        <v-col class="d-flex flex-column sort-col pa-6" cols="2">
           <p class="mb-1 font-weight-black">Sort by</p>
           <v-btn-toggle class="d-flex flex-column h-auto">
             <v-btn class="sort-btn">Name</v-btn>
@@ -13,7 +13,7 @@
           <!--          <OrderButton  />-->
         </v-col>
         <!-- Filtering -->
-        <v-col class="">
+        <v-col class="pa-6">
           <p class="mb-1 font-weight-black">Narrow by ...</p>
           <v-row class="v-row v-row-cols-1 v-row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-1">
             <!-- Systems -->
@@ -153,7 +153,7 @@ export default {
 
 <style scoped>
 .main-container {
-  border-bottom: 2px solid slategrey;
+  box-shadow: 0 1px 10px slategrey;
   color: white;
 }
 
@@ -171,7 +171,7 @@ export default {
   color: white;
   margin-bottom: 10px;
   margin-top: 10px;
-  padding: 10px;
+  padding: 12px;
 }
 
 </style>

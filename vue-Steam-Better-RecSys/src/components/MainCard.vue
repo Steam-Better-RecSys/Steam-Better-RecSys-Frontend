@@ -14,6 +14,6 @@ export default {
 
 <style scoped>
 div{
-  height: 400px;
+  height: 700px;
 }
 </style>

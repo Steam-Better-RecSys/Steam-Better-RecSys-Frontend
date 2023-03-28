@@ -1,5 +1,5 @@
 <template>
-  <div class="history">
+  <div class="history pa-5">
     <h1>History of views</h1>
     <div class="d-flex justify-end align-baseline">
       <v-btn @click="$router.push({path:'/recommendation'})">Generate</v-btn>
@@ -16,7 +16,7 @@ export default {
 <style scoped>
 .history{
   box-shadow:  0 0 10px slategrey;
-  height: 300px;
   background: rgb(43,53,68);
+  height: 200px;
 }
 </style>
