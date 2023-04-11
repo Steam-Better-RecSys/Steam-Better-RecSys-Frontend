@@ -1,14 +1,27 @@
 <template>
   <div class="wrapper d-flex justify-center align-center flex-column">
-    <recommendation-card/>
+    <recommendation-card :name="recommendedGames"/>
     <v-btn class="mt-7" @click="$router.push({path: '/'})">Get back</v-btn>
   </div>
 </template>
 
 <script>
 import RecommendationCard from "@/components/RecommendationCard.vue";
+import {mapActions, mapState} from "pinia/dist/pinia";
+import useGamesStore from "../stores/games";
+
 export default {
-components:{RecommendationCard}
+  name: "RecommendationView",
+  components: {RecommendationCard},
+  computed: {
+    ...mapState(useGamesStore, ['recommendedGames']),
+  },
+  methods: {
+    ...mapActions(useGamesStore, ['getRecommendedGames']),
+  },
+  mounted() {
+    this.getRecommendedGames()
+  }
 }
 </script>
 

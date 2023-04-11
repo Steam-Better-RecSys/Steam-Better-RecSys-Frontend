@@ -16,7 +16,7 @@
           <img src="src/assets/hero.avif" alt="">
         </div>
         <div class="desc-wrapper">
-          <h1>Cult of the Lamb</h1>
+          <h1>{{ name }}</h1>
           <p>Cultivate your own cult in the lands of false prophets, travel through the mysterious corners of the
             forest,
             gather loyal followers around you and spread your word to the masses to make your cult the only one.</p>
@@ -45,6 +45,11 @@
 <script>
 export default {
   name: "RecommendationCard",
+  props: {
+    name: {
+      type: String
+    }
+  }
 }
 </script>
 
