@@ -13,7 +13,7 @@
     <div class="wrapper">
       <div class="card pa-8">
         <div class="img-wrapper d-flex justify-center mb-3">
-          <img src="src/assets/hero.avif" alt="">
+          <img src="../assets/hero.avif" alt="">
         </div>
         <div class="desc-wrapper">
           <h1>{{ name }}</h1>
