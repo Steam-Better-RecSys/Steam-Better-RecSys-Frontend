@@ -1,17 +1,16 @@
-import { defineStore } from 'pinia'
-import { recommendationsAPI } from "@/api";
+import {defineStore} from 'pinia'
+import {recommendationsAPI} from "@/api";
 
 const useGamesStore = defineStore('gameSystems', {
     state: () => ({
         recommendedGames: []
     }),
     actions: {
-        async getRecommendedGames() {
-            const response = await recommendationsAPI.getRecommendedGames()
+        async getAllGamesStore() {
+            const response = await recommendationsAPI.getAllGames()
+            this.recommendedGames = response.data.slice(0,14)
 
-            this.recommendedGames = response.data.items[0]
-
-            return response
+            return this.recommendedGames;
         },
     }
 })
