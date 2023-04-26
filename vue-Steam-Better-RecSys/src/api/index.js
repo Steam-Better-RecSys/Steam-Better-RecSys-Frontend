@@ -1,8 +1,11 @@
 import instance from "./instance"
-import RecommendationsAPI from "./recommendations";
+import GamesAPI from "./games"
+import TagsAPI from "@/api/tags";
 
-const recommendationsAPI = new RecommendationsAPI(instance)
+const recommendationsAPI = new GamesAPI(instance);
+const tagsAPI = new TagsAPI(instance);
 
 export {
-    recommendationsAPI
+    recommendationsAPI,
+    tagsAPI
 }
