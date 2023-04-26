@@ -1,177 +1,139 @@
 <template>
-  <div class="main-container pa-8">
-    <div class="wrapper pt-8" id="collapseSorting">
-      <v-row class="row main-row">
-        <!-- Sorting -->
-        <v-col class="d-flex flex-column sort-col pa-6" cols="2">
-          <p class="mb-1 font-weight-black">Sort by</p>
-          <v-btn-toggle class="d-flex flex-column h-auto">
-            <v-btn class="sort-btn">Name</v-btn>
-            <v-btn class="sort-btn">Release date</v-btn>
-            <v-btn class="sort-btn">User reviews</v-btn>
-          </v-btn-toggle>
-          <!--          <OrderButton  />-->
-        </v-col>
-        <!-- Filtering -->
-        <v-col class="pa-6">
-          <p class="mb-1 font-weight-black">Narrow by ...</p>
-          <v-row class="v-row v-row-cols-1 v-row-cols-sm-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-1">
-            <!-- Systems -->
-            <v-col class="" cols="4">
-              <p class="mb-1">Game genre</p>
-              <div class="">
-                <GenreCheck style="display: inline-block; max-width:50%; width: 100%;"
-                            v-for="genre in genres" :id="genre.id" :key="genre.id" :name="genre.name"/>
-              </div>
-            </v-col>
+    <div class="main-container pa-8">
+        <div class="wrapper pt-8" id="collapseSorting">
+            <v-row class="row main-row">
+                <!-- Sorting -->
+                <v-col class="d-flex flex-column sort-col pa-6" cols="2">
+                    <p class="mb-1 font-weight-black">Sort by</p>
+                    <v-btn-toggle class="d-flex flex-column h-auto">
+                        <v-btn class="sort-btn">Name</v-btn>
+                        <v-btn class="sort-btn">Release date</v-btn>
+                        <v-btn class="sort-btn">User reviews</v-btn>
+                    </v-btn-toggle>
+                    <!--          <OrderButton  />-->
+                </v-col>
+                <!-- Filtering -->
+                <v-col class="pa-6">
+                    <p class="mb-1 font-weight-black">Narrow by ...</p>
+                    <div class="btn-group mb-4" v-for="tagClass in tagClasses">
+                        <input type="button" class="btn-check" :id="tagClass.id" autocomplete="off"
+                               @click="selectClass(tagClass.id)">
+                        <label class="btn btn-outline-primary" :class="[tagClass.isSelected ? 'active' : '']"
+                               :for="tagClass.id"
+                        >{{ tagClass.name }}</label>
 
-            <!-- Checkboxes -->
-            <v-col class="" cols="2">
-              <p class="mb-1">Language</p>
-              <div class="d-flex flex-column justify-space-around">
-                <LanguageCheck v-for="lang in languages" :id="lang.id" :key="lang.id" :name="lang.name"/>
-              </div>
-            </v-col>
-            <!-- Container with Tags-->
-            <v-col class="" cols="6">
-              <div class="d-flex">
-                <p id="tagsHeader" class="mb-3" >Tags: {{ selectedTags.size}}/3</p>
-                <p v-if="selectedTags.size > 3" class="text-red ml-5">Delete some tags</p>
-              </div>
-              <div class="d-flex flex-row justify-space-between align-content-center flex-wrap">
-                <TagButton v-for="tag in tags" :id="tag.id" :key="tag.id" :name="tag.name" @click="selectedTags" @setTag="selectOption(tag.id, tag.name)" />
-              </div>
-            </v-col>
-          </v-row>
-        </v-col>
-      </v-row>
+                    </div>
+                    <div class="tags d-flex" v-if="idClass">
+                        <button type="button" v-for="tag in idClass.tags" class="btn rounded-pill btn-light">
+                            {{ tag.name }}
+                        </button>
+                    </div>
+                </v-col>
+            </v-row>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 import TagButton from "@/components/UI/TagButton.vue";
 import LanguageCheck from "@/components/UI/LanguageCheck.vue";
 import GenreCheck from "@/components/UI/GenreCheck.vue";
+import {mapActions} from "pinia";
+import useTagsStore from "@/stores/tags";
 
 export default {
-  components: {
-    TagButton,
-    LanguageCheck,
-    GenreCheck,
-  },
-  data() {
-    return {
-      sortOptions: [
-        {
-          name: 'Name',
-          id: 1,
-          state: 0,
-        },
-        {
-          name: 'Release date',
-          id: 2,
-          state: 0,
+    components: {
+        TagButton,
+        LanguageCheck,
+        GenreCheck,
+    },
+    data() {
+        return {
+            tagClasses: [],
+            idClass: null,
+            sortOptions: [
+                {
+                    name: 'Name',
+                    id: 1,
+                    state: 0,
+                },
+                {
+                    name: 'Release date',
+                    id: 2,
+                    state: 0,
+                }
+            ],
+            selectedTags: new Map(),
         }
-      ],
-      tags: [
-        {
-          name: 'Action',
-          id: 1,
+    },
+    methods: {
+        ...mapActions(useTagsStore, ['getAllTagsStore']),
+
+        async renderTags() {
+            this.tagClasses = await this.getAllTagsStore();
+
+            this.clearSelect();
+
+            console.log(this.tagClasses)
         },
-        {
-          name: 'Multiplayer',
-          id: 2,
+
+        selectClass(id) {
+            this.clearSelect();
+
+
+            this.tagClasses.find(tagClass => tagClass.id === id).isSelected = !this.tagClasses.find(tagClass => tagClass.id === id).isSelected
+            this.idClass = this.tagClasses.find(tagClass => tagClass.id === id);
+
+            console.log(this.tagClasses.find(tagClass => tagClass.id === id))
+            console.log(this.idClass)
         },
-        {
-          name: 'Simulation',
-          id: 3,
+
+        clearSelect() {
+            for (let tagClass in this.tagClasses) {
+                this.tagClasses[tagClass].isSelected = false;
+            }
         },
-        {
-          name: 'Walking simulator',
-          id: 4,
-        },
-        {
-          name: 'Horror',
-          id: 5,
+
+        selectOption(key, value) {
+            this.selectedTags.has(key) ? this.selectedTags.delete(key) : this.selectedTags.set(key, value)
         }
-      ],
-      languages: [
-        {
-          name: 'English',
-          id: 1,
-        },
-        {
-          name: 'Russian',
-          id: 2,
-        },
-        {
-          name: 'Spanish',
-          id: 3,
-        },
-        {
-          name: 'German',
-          id: 4,
-        },
-      ],
-      genres: [
-        {
-          name: 'Action',
-          id: '1'
-        },
-        {
-          name: 'Puzzle',
-          id: '2'
-        },
-        {
-          name: 'Adventure',
-          id: '3'
-        },
-        {
-          name: 'RPG',
-          id: '4'
-        },
-        {
-          name: 'Simulation',
-          id: '5'
-        },
-        {
-          name: 'Strategy',
-          id: '6'
-        },
-      ],
-      selectedTags: new Map(),
+    },
+    mounted() {
+        this.renderTags();
     }
-  },
-  methods: {
-    selectOption(key, value) {
-        this.selectedTags.has(key) ? this.selectedTags.delete(key) : this.selectedTags.set(key, value)
-    }
-  }
 }
 </script>
 
 <style scoped>
 .main-container {
-  box-shadow: 0 1px 10px slategrey;
-  color: white;
+    box-shadow: 0 1px 10px slategrey;
+    color: white;
 }
 
 .main-row {
-  height: auto;
+    height: auto;
 }
 
 .sort-col {
-  border-right: 1px solid slategrey;
+    border-right: 1px solid slategrey;
 }
 
 .sort-btn {
-  background: rgb(32, 40, 51);
-  border-radius: 20px !important;
-  color: white;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 12px;
+    background: rgb(32, 40, 51);
+    border-radius: 20px !important;
+    color: white;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding: 12px;
+}
+
+.tags {
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.btn{
+
 }
 
 </style>
