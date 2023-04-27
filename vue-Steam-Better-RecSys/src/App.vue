@@ -1,20 +1,13 @@
-<script >
+<script>
 
 </script>
 
 <template>
-  <v-app>
-
-    <v-main>
-      <RouterView>
-
-      </RouterView>
-    </v-main>
-  </v-app>
-
-
+  <body class="d-flex flex-column min-vh-100 my-body">
+      <RouterView />
+  </body>
 </template>
 
-<style scoped>
+<style>
 
 </style>
