@@ -19,21 +19,25 @@ export default {
 </script>
 
 <style scoped>
-a{
-    color: white;
+a {
+    color: var(--light-theme-color);
     float: left;
     padding: 8px 16px;
     text-decoration: none;
+    border-radius: 5px;
 }
 
-a.active{
+a:hover {
+    background: var(--light-theme-color);
+    color: var(--contast-text-color)
+}
+
+a.active {
     background-color: #6e4bc2;
     color: white;
-    border-radius: 5px;
 }
 
-a:hover:not(.active) {
+a:hover:not (.active) {
     background-color: #1B2228FF;
-    border-radius: 5px;
 }
 </style>
