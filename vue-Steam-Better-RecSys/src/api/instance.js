@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const apiURL = 'https://api.steamwizzard.com/'
+// const apiURL = 'https://api.steamwizzard.com/'
+const apiURL = 'http://localhost:8000/'
 
 const instance = axios.create({
     baseURL: apiURL
