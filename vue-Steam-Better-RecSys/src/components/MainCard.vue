@@ -4,7 +4,8 @@
             <div class="grid-container">
                 <div class="game-wrap" v-for="game in games">
                     <img class="game-img" :src="game.verticalImageUrl" :alt="game.title" :id="game.id"
-                         @click="select(game.id)" :class="{active: game.isSelected}" @error="setImage($event.currentTarget)">
+                         @click="setActive(game.id)" :class="{active: isActive}"
+                         @error="setImage($event.currentTarget)">
                 </div>
             </div>
             <Pagination/>
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import {mapActions} from "pinia";
+import {mapActions, mapState} from "pinia";
 import useGamesStore from "@/stores/games";
 import Pagination from "@/components/UI/Pagination.vue";
 
@@ -24,24 +25,24 @@ export default {
     },
     data() {
         return {
-            games: [],
+            isActive: false,
         }
     },
     methods: {
-        ...mapActions(useGamesStore, ['getAllGamesStore']),
+        ...mapActions(useGamesStore, ['getAllGamesStore', "getFilteredGames"]),
         async render() {
-            this.games = await this.getAllGamesStore();
-            for (let game in this.games) {
-                this.games[game].isSelected = false;
-            }
-
-        },
-        select(id) {
-            this.games.find(game => game.id === id).isSelected = !this.games.find(game => game.id === id).isSelected
+            await this.getAllGamesStore();
         },
         setImage(image) {
             image.setAttribute("src", "src/assets/Image404.png");
         },
+
+        setActive(id) {
+            this.isActive = !this.isActive;
+        },
+    },
+    computed: {
+        ...mapState(useGamesStore, ['games'])
     },
     mounted() {
         this.render()
@@ -79,8 +80,8 @@ div {
 
 .game-img.active {
     opacity: 1;
-    -webkit-box-shadow: 0 0 10px #fff;
-    box-shadow: 0 0 10px #fff;
+    -webkit-box-shadow: 0 0 25px #591fe7;
+    box-shadow: 0 0 25px #591fe7;
 }
 
 .game-img:hover {
