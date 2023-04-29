@@ -1,18 +1,15 @@
 <template>
-  <div class="my-body">
-      <search-header/>
-      <filters-menu class="filters"/>
-
-    <main-card/>
-    <history-footer/>
-  </div>
+  <search-header/>
+  <filters-menu/>
+  <main-card/>
+  <history-footer/>
 </template>
 
 <script>
 import SearchHeader from "@/components/SearchHeader.vue";
 import FiltersMenu from "@/components/FiltersMenu.vue";
 import MainCard from "@/components/MainCard.vue";
-import HistoryFooter from "@/components/HistoryFooter.vue";
+import HistoryFooter from "@/components/Footer.vue";
 
 export default {
   components: {
@@ -25,7 +22,5 @@ export default {
 </script>
 
 <style scoped>
-.my-body {
-  background: rgb(37, 46, 59);
-}
+
 </style>
