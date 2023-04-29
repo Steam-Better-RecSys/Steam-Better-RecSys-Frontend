@@ -9,6 +9,13 @@ class GamesAPI {
             url: '/games'
         })
     }
+
+    updateGameDescription = async (id) => {
+        return this.API({
+            method: 'PUT',
+            url: '/games/description/' + id,
+        })
+    }
 }
 
 export default GamesAPI

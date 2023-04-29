@@ -1,9 +1,10 @@
 import {defineStore} from 'pinia'
-import {recommendationsAPI} from "@/api";
+import {recommendationsAPI, gamesAPI} from "@/api";
 
 const useGamesStore = defineStore('gameSystems', {
     state: () => ({
-        recommendedGames: []
+        recommendedGames: [],
+        currentRecommendedGame: null
     }),
     actions: {
         async getAllGamesStore() {
@@ -12,6 +13,18 @@ const useGamesStore = defineStore('gameSystems', {
 
             return this.recommendedGames;
         },
+        async getRecommendedGame() {
+            const response = await gamesAPI.getRecommendation()
+            this.currentRecommendedGame = response.data[0]
+
+            return this.currentRecommendedGame
+        },
+        async updateCurrentGameDescription() {
+            const response = await recommendationsAPI.updateGameDescription(this.currentRecommendedGame.gameId)
+            this.currentRecommendedGame = response.data[0]
+
+            return this.currentRecommendedGame
+        }
     }
 })
 
