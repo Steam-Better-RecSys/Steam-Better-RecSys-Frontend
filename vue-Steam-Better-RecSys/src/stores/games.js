@@ -8,7 +8,7 @@ const useGamesStore = defineStore('gameSystems', {
     actions: {
         async getAllGamesStore() {
             const response = await recommendationsAPI.getAllGames()
-            this.recommendedGames = response.data.slice(0,14)
+            this.recommendedGames = response.data[0]
 
             return this.recommendedGames;
         },

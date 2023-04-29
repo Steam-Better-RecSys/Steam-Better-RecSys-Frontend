@@ -3,8 +3,8 @@
         <div class="main-wrap w-100 h-100 pa-8 d-flex flex-column align-center">
             <div class="grid-container">
                 <div class="game-wrap" v-for="game in games">
-                    <img class="game-img" :src="game.verticalImageUrl" alt="" :id="game.id"
-                         @click="select(game.id)" :class="{active: game.isSelected}">
+                    <img class="game-img" :src="game.verticalImageUrl" :alt="game.title" :id="game.id"
+                         @click="select(game.id)" :class="{active: game.isSelected}" @error="setImage($event.currentTarget)">
                 </div>
             </div>
             <Pagination/>
@@ -38,9 +38,10 @@ export default {
         },
         select(id) {
             this.games.find(game => game.id === id).isSelected = !this.games.find(game => game.id === id).isSelected
-
-        }
-
+        },
+        setImage(image) {
+            image.setAttribute("src", "src/assets/Image404.png");
+        },
     },
     mounted() {
         this.render()
