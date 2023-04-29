@@ -1,125 +1,168 @@
 <template>
-  <div class="main-container px-4 py-2">
-    <div class="wrapper" id="collapseSorting">
-      <div>
-        <v-row class="row main-row">
-          <!-- Sorting -->
-          <v-col class="d-flex flex-column sort-col" cols="2">
-            <p class="mb-1 font-weight-black">Sorting</p>
-            <v-btn-toggle class="d-flex flex-column h-auto">
-              <v-btn class="sort-btn">Name</v-btn>
-              <v-btn class="sort-btn">Release date</v-btn>
-              <v-btn class="sort-btn">User reviews</v-btn>
-            </v-btn-toggle>
-            <!-- <OrderButton  />-->
-          </v-col>
-          <!-- Filtering -->
-          <v-col class="">
-            <p class="mb-1 font-weight-black">Filtering</p>
-            <div class="btn-group mr-1 mb-3" role="group" v-for="tagClass in tagClasses">
-              <input type="radio" class="btn-check" name="btnradio" :id="tagClass.id" autocomplete="off"
-                     @change="selectClass(tagClass.id)">
-              <label class="btn btn-outline-primary custom-control-label" :for="tagClass.id">{{ tagClass.name }}</label>
-            </div>
+    <div class="main-container px-4 py-2">
+        <div class="wrapper" id="collapseSorting">
+            <div>
+                <table class="w-100">
+                    <tr>
+                        <th width="15%">
+                            <p class="mb-1 font-weight-black">Sorting</p>
+                        </th>
+                        <th>
+                            <p class="mb-1 font-weight-black">Filtering</p>
+                        </th>
+                    </tr>
+                    <tr class="">
+                        <td height="200px" class="pr-7 py-4 align-top">
+                            <div class="mb-4">
+                                <div class="btn-group d-flex flex-column" role="group"
+                                     v-for="option in sortOptions">
+                                    <input type="radio" class="btn-check btn-primary" name="btnRadioSort"
+                                           autocomplete="off"
+                                           :id="option.sortId" @change="selectSort(option.sortId)">
+                                    <label class="btn btn-outline-primary custom-control-label"
+                                           :for="option.sortId">{{ option.name }}</label>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="btn-group w-50" role="group" v-for="order in orderOptions">
+                                    <input type="radio" class="btn-check btn-primary w-33" autocomplete="off"
+                                           :id="order.orderId" @change="selectOrder(order.orderId)"
+                                           name="btnRadioOrder">
+                                    <label class="btn btn-outline-primary custom-control-label"
+                                           :for="order.orderId">{{ order.name }}</label>
+                                </div>
+                            </div>
+                        </td>
+                        <td class=" pt-4 d-flex flex-column justify-start">
+                            <div>
+                                <div class="btn-group mr-1" role="group" v-for="tagClass in tagClasses">
+                                    <input type="radio" class="btn-check filtering" name="btnradio" :id="tagClass.id"
+                                           autocomplete="off"
+                                           @change="selectClass(tagClass.id)">
+                                    <label class="btn btn-outline-primary custom-control-label"
+                                           :for="tagClass.id">{{ tagClass.name }}</label>
+                                </div>
+                            </div>
 
-            <!--
-            <div class="btn-group mb-4" v-for="tagClass in tagClasses">
-                <input type="button" class="btn-check" :id="tagClass.id" autocomplete="off"
-                       @click="selectClass(tagClass.id)">
-                <label class="btn btn-outline-primary" :class="[tagClass.isSelected ? 'active' : '']"
-                       :for="tagClass.id"
-                >{{ tagClass.name }}</label>
+                            <div class="tags d-flex mt-3" v-if="idClass">
+                                <button type="button" v-for="tag in idClass.tags"
+                                        class="btn btn-light btn-sm rounded-pill m-0" @click="selectTag(tag.id)">
+                                    {{ tag.name }}
+                                </button>
+                            </div>
 
-            </div>
-            -->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="12" class="pt-7">
+                            <div class="col-12 d-flex justify-content-between mt-0 mb-1">
+                                <div class="w-50 d-flex align-center">
+                                    <div class="w-25 d-flex justify-content-between align-center">
+                                        <button type="button" class="btn btn-primary" @click="sortAndFilter">
+                                            Sort & Filter
+                                        </button>
+                                        <span>You chose:</span>
+                                    </div>
+                                    <div>
+                                        <span v-for="option in selectedOptions">{{option}}</span>
+                                    </div>
+                                </div>
 
-            <div class="tags d-flex" v-if="idClass">
-              <button type="button" v-for="tag in idClass.tags" class="btn btn-light btn-sm rounded-pill m-0">
-                {{ tag.name }}
-              </button>
+                                <button type="button" class="btn btn-primary">
+                                    Do Magic
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <hr>
             </div>
-          </v-col>
-          <div class="col-12 d-flex justify-content-between mt-0 mb-1">
-            <button type="button" class="btn btn-primary">
-              Sort & Filter
-            </button>
-            <button type="button" class="btn btn-primary">
-              Do Magic
-            </button>
-          </div>
-        </v-row>
-        <hr>
-      </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import TagButton from "@/components/UI/TagButton.vue";
-import LanguageCheck from "@/components/UI/LanguageCheck.vue";
-import GenreCheck from "@/components/UI/GenreCheck.vue";
-import {mapActions} from "pinia";
+import {mapActions, mapState} from "pinia";
 import useTagsStore from "@/stores/tags";
+import useGamesStore from "@/stores/games";
 
 export default {
-  components: {
-    TagButton,
-    LanguageCheck,
-    GenreCheck,
-  },
-  data() {
-    return {
-      tagClasses: [],
-      idClass: null,
-      sortOptions: [
-        {
-          name: 'Name',
-          id: 1,
-          state: 0,
-        },
-        {
-          name: 'Release date',
-          id: 2,
-          state: 0,
+    components: {},
+    data() {
+        return {
+            tagClasses: [],
+            idClass: null,
+            sortOptions: [
+                {
+                    name: 'Name',
+                    sortId: 'title',
+                },
+                {
+                    name: 'Release date',
+                    sortId: 'releaseDate',
+                },
+                {
+                    name: 'User Reviews',
+                    sortId: 'reviews',
+                },
+            ],
+            orderOptions: [
+                {
+                    name: 'ASC',
+                    orderId: 'asc'
+                },
+                {
+                    name: 'DESC',
+                    orderId: 'desc',
+                }
+            ],
+            selectedOptions: new Map()
         }
-      ],
-      selectedTags: new Map(),
+    },
+    methods: {
+        ...mapActions(useGamesStore, ['getFilteredGamesStore']),
+        ...mapActions(useTagsStore, ['getAllTagsStore', "updateOptionsState"]),
+
+        async renderTags() {
+            this.tagClasses = await this.getAllTagsStore();
+            this.clearSelect();
+        },
+
+        selectClass(id) {
+            this.tagClasses.find(tagClass => tagClass.id === id).isSelected = !this.tagClasses.find(tagClass => tagClass.id === id).isSelected
+            this.idClass = this.tagClasses.find(tagClass => tagClass.id === id);
+        },
+
+        clearSelect() {
+            for (let tagClass in this.tagClasses) {
+                this.tagClasses[tagClass].isSelected = false;
+            }
+        },
+
+        selectTag(id) {
+            this.selectedOptions.set(id, 'tag')
+        },
+
+        selectSort(id) {
+            this.selectedOptions.set(id, 'sort')
+        },
+
+        selectOrder(id) {
+                this.selectedOptions.set(id, 'order')
+        },
+
+        async sortAndFilter() {
+            await this.getFilteredGamesStore(this.selectedOptions)
+            this.selectedOptions = new Map();
+        }
+
+    },
+    computed: {
+        ...mapState(useTagsStore, ['tags'])
+    },
+    mounted() {
+        this.renderTags();
     }
-  },
-  methods: {
-    ...mapActions(useTagsStore, ['getAllTagsStore']),
-
-    async renderTags() {
-      this.tagClasses = await this.getAllTagsStore();
-
-      this.clearSelect();
-
-      console.log(this.tagClasses)
-    },
-
-    selectClass(id) {
-      // this.clearSelect();
-
-      this.tagClasses.find(tagClass => tagClass.id === id).isSelected = !this.tagClasses.find(tagClass => tagClass.id === id).isSelected
-      this.idClass = this.tagClasses.find(tagClass => tagClass.id === id);
-
-      console.log(this.tagClasses.find(tagClass => tagClass.id === id))
-      console.log(this.idClass)
-    },
-
-    clearSelect() {
-      for (let tagClass in this.tagClasses) {
-        this.tagClasses[tagClass].isSelected = false;
-      }
-    },
-
-    selectOption(key, value) {
-      this.selectedTags.has(key) ? this.selectedTags.delete(key) : this.selectedTags.set(key, value)
-    }
-  },
-  mounted() {
-    this.renderTags();
-  }
 }
 </script>
 
@@ -127,29 +170,22 @@ export default {
 @import "../styles/main.css";
 
 .main-container {
-  color: var(--main-text-color);
+    color: var(--main-text-color);
 }
 
 .main-row {
-  height: auto;
+    height: auto;
 }
 
 .sort-col {
 
 }
 
-.sort-btn {
-  background: rgb(32, 40, 51);
-  border-radius: 20px !important;
-  color: white;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  padding: 12px;
-}
 
 .tags {
-  flex-wrap: wrap;
-  gap: 20px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
+
 
 </style>
