@@ -32,3 +32,22 @@
     background: var(--main-theme-color);
     border-color: var(--main-theme-color);
 }
+
+.btn-light {
+    color: var(--main-theme-color);
+    background-color: var(--additional-bg-color);
+    border-color: var(--additional-bg-color);
+}
+
+.btn-light:hover {
+    color: var(--bg-color);
+    background: var(--main-theme-color);
+    border-color: var(--main-theme-color);
+}
+
+.btn-light:focus, .btn-light:active:focus {
+    color: var(--bg-color);
+    background: var(--main-theme-color);
+    box-shadow: 0 0 0 0.2rem var(--light-theme-color);
+    border-color: var(--main-theme-color);
+}
