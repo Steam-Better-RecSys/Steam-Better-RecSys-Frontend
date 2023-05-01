@@ -1,14 +1,14 @@
 class TagsAPI {
     constructor(instance) {
-        this.API = instance
+        this.API = instance;
     }
 
     getAllTags = async () => {
         return this.API({
             method: 'GET',
-            url: '/classes'
-        })
-    }
+            url: '/classes',
+        });
+    };
 }
 
-export default TagsAPI
+export default TagsAPI;

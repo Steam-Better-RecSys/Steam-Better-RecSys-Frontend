@@ -1,5 +1,5 @@
-import {createRouter, createWebHistory} from 'vue-router'
-import MainView from "@/views/MainView.vue";
+import { createRouter, createWebHistory } from 'vue-router';
+import MainView from '@/views/MainView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,19 +7,19 @@ const router = createRouter({
         {
             path: '/',
             name: 'All Games',
-            component: MainView
+            component: MainView,
         },
         {
-            path:'/recommendation',
+            path: '/recommendation',
             name: 'Recommenations',
             component: () => import('../views/RecommendationView.vue'),
-        }
-    ]
-})
+        },
+    ],
+});
 
 router.beforeEach((to, from, next) => {
     document.title = to.name;
     next();
 });
 
-export default router
+export default router;

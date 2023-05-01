@@ -1,8 +1,8 @@
-import { persist } from "pinia-persists"
-import { createPinia } from "pinia"
+import { persist } from 'pinia-persists';
+import { createPinia } from 'pinia';
 
-const pinia = createPinia()
+const pinia = createPinia();
 
-pinia.use(persist())
+pinia.use(persist());
 
-export default pinia
+export default pinia;

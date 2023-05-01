@@ -1,5 +1,5 @@
-import {defineStore} from 'pinia'
-import {tagsAPI} from "@/api";
+import { defineStore } from 'pinia';
+import { tagsAPI } from '@/api';
 
 const useTagsStore = defineStore('tags', {
     state: () => ({
@@ -7,11 +7,11 @@ const useTagsStore = defineStore('tags', {
     }),
     actions: {
         async getAllTagsStore() {
-            const response = await tagsAPI.getAllTags()
-            this.classes = response.data
-            return this.classes
+            const response = await tagsAPI.getAllTags();
+            this.classes = response.data;
+            return this.classes;
         },
-    }
-})
+    },
+});
 
-export default useTagsStore
+export default useTagsStore;
