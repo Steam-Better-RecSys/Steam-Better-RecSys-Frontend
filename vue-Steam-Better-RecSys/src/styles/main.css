@@ -1,9 +1,11 @@
 .my-body {
-    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+    font-family: 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue',
+        sans-serif;
     background: var(--bg-color);
 }
 
-.btn-primary, .btn-check:checked~.custom-control-label {
+.btn-primary,
+.btn-check:checked ~ .custom-control-label {
     color: var(--bg-color);
     background: var(--main-theme-color);
     border-color: var(--main-theme-color);
@@ -12,23 +14,29 @@
 .btn-outline-primary {
     color: var(--main-theme-color);
     background-color: var(--bg-color);
-    border-color: var(--main-theme-color)
+    border-color: var(--main-theme-color);
 }
 
-.btn-primary:hover, .btn-outline-primary:hover, .btn-check:hover~.custom-control-label {
+.btn-primary:hover,
+.btn-outline-primary:hover,
+.btn-check:hover ~ .custom-control-label {
     color: white;
     background: var(--dark-theme-color);
     border-color: var(--dark-theme-color);
 }
 
-.btn-primary:focus, .btn-primary:active:focus, .btn-outline-primary:focus, .btn-outline-primary:active:focus {
+.btn-primary:focus,
+.btn-primary:active:focus,
+.btn-outline-primary:focus,
+.btn-outline-primary:active:focus {
     color: white;
     background: var(--dark-theme-color);
     box-shadow: 0 0 0 0.2rem var(--light-theme-color);
     border-color: var(--dark-theme-color);
 }
 
-.btn-check:active~.custom-control-label, .btn-check:focus~.custom-control-label {
+.btn-check:active ~ .custom-control-label,
+.btn-check:focus ~ .custom-control-label {
     background: var(--main-theme-color);
     border-color: var(--main-theme-color);
 }
@@ -45,7 +53,8 @@
     border-color: var(--main-theme-color);
 }
 
-.btn-light:focus, .btn-light:active:focus {
+.btn-light:focus,
+.btn-light:active:focus {
     color: var(--bg-color);
     background: var(--main-theme-color);
     box-shadow: 0 0 0 0.2rem var(--light-theme-color);

@@ -3,38 +3,44 @@
         <div class="main-wrap w-100 h-100 pa-8 d-flex flex-column align-center">
             <div class="grid-container">
                 <div class="game-wrap" v-for="game in games">
-                    <img class="game-img" :src="game.verticalImageUrl" :alt="game.title" :id="game.id"
-                         @click="setActive(game.id)" :class="{active: isActive}"
-                         @error="setImage($event.currentTarget)">
+                    <img
+                        class="game-img"
+                        :src="game.verticalImageUrl"
+                        :alt="game.title"
+                        :id="game.id"
+                        @click="setActive(game.id)"
+                        :class="{ active: isActive }"
+                        @error="setImage($event.currentTarget)"
+                    />
                 </div>
             </div>
-            <Pagination/>
+            <Pagination />
         </div>
     </div>
 </template>
 
 <script>
-import {mapActions, mapState} from "pinia";
-import useGamesStore from "@/stores/games";
-import Pagination from "@/components/UI/Pagination.vue";
+import { mapActions, mapState } from 'pinia';
+import useGamesStore from '@/stores/games';
+import Pagination from '@/components/UI/Pagination.vue';
 
 export default {
-    name: "mainCard",
+    name: 'mainCard',
     components: {
-        Pagination
+        Pagination,
     },
     data() {
         return {
             isActive: false,
-        }
+        };
     },
     methods: {
-        ...mapActions(useGamesStore, ['getAllGamesStore', "getFilteredGames"]),
+        ...mapActions(useGamesStore, ['getAllGamesStore', 'getFilteredGames']),
         async render() {
             await this.getAllGamesStore();
         },
         setImage(image) {
-            image.setAttribute("src", "src/assets/Image404.png");
+            image.setAttribute('src', 'src/assets/Image404.png');
         },
 
         setActive(id) {
@@ -42,12 +48,12 @@ export default {
         },
     },
     computed: {
-        ...mapState(useGamesStore, ['games'])
+        ...mapState(useGamesStore, ['games']),
     },
     mounted() {
-        this.render()
-    }
-}
+        this.render();
+    },
+};
 </script>
 
 <style scoped>
@@ -69,7 +75,6 @@ div {
     flex-wrap: wrap;
     height: max-content;
 }
-
 
 .game-img {
     width: 65%;

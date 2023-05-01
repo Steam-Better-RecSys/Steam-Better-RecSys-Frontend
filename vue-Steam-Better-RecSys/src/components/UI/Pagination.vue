@@ -13,9 +13,8 @@
 
 <script>
 export default {
-    name: "Pagination"
-
-}
+    name: 'Pagination',
+};
 </script>
 
 <style scoped>
@@ -29,7 +28,7 @@ a {
 
 a:hover {
     background: var(--light-theme-color);
-    color: var(--contast-text-color)
+    color: var(--contast-text-color);
 }
 
 a.active {
@@ -38,6 +37,6 @@ a.active {
 }
 
 a:hover:not (.active) {
-    background-color: #1B2228FF;
+    background-color: #1b2228ff;
 }
 </style>

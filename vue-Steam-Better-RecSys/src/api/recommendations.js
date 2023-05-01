@@ -1,6 +1,6 @@
 class RecommendationsAPI {
     constructor(instance) {
-        this.API = instance
+        this.API = instance;
     }
 
     setSelectedGamesForRecommendations = async (gameIds) => {
@@ -10,10 +10,10 @@ class RecommendationsAPI {
             withCredentials: true,
             credentials: 'include',
             data: {
-                games_ids: gameIds
-            }
-        })
-    }
+                games_ids: gameIds,
+            },
+        });
+    };
 
     getRecommendation = async (gameId, gameStatus) => {
         return this.API({
@@ -23,10 +23,10 @@ class RecommendationsAPI {
             credentials: 'include',
             params: {
                 game_id: gameId,
-                game_status: gameStatus
-            }
-        })
-    }
+                game_status: gameStatus,
+            },
+        });
+    };
 }
 
-export default RecommendationsAPI
+export default RecommendationsAPI;
