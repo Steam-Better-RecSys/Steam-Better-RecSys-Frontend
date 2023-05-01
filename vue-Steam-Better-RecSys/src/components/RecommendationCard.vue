@@ -1,5 +1,5 @@
 <template>
-    <div class="card pa-5">
+    <div class="card p-3">
         <img class="card-img-top" :src="image" :alt="name" />
         <div class="card-body pb-0">
             <h1>

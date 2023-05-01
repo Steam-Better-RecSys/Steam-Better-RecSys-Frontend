@@ -1,7 +1,7 @@
 <template>
     <search-header />
-    <div class="wrapper d-flex justify-center align-center flex-column">
-        <div class="col-6 d-flex flex-row justify-content-center mt-2">
+    <div class="d-flex justify-center align-center flex-column">
+        <div class="d-flex flex-row justify-content-center mt-2">
             <recommendation-card
                 :name="recommendedGames[currentGameIndex].title"
                 :description="recommendedGames[currentGameIndex].description"
@@ -12,7 +12,7 @@
         </div>
         <div
             v-if="isLoaded"
-            class="col-6 d-flex flex-row justify-content-around mt-3"
+            class="d-flex flex-row justify-content-around mt-3"
         >
             <button type="button" class="btn btn-primary">
                 <font-awesome-icon icon="fas fa-ban" />
