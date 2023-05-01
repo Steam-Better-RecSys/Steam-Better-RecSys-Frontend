@@ -6,12 +6,12 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'All Games',
+            name: 'Steam Wizzard — All Games',
             component: MainView,
         },
         {
             path: '/recommendation',
-            name: 'Recommenations',
+            name: 'Steam Wizzard — Recommenations',
             component: () => import('../views/RecommendationView.vue'),
         },
     ],
