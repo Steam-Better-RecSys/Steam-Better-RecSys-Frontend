@@ -1,8 +1,8 @@
 <template>
-  <search-header/>
-  <filters-menu/>
-  <main-card/>
-  <history-footer/>
+    <search-header/>
+    <filters-menu />
+    <main-card/>
+    <history-footer/>
 </template>
 
 <script>
@@ -12,12 +12,12 @@ import MainCard from "@/components/MainCard.vue";
 import HistoryFooter from "@/components/Footer.vue";
 
 export default {
-  components: {
-    MainCard,
-    SearchHeader,
-    FiltersMenu,
-    HistoryFooter
-  }
+    components: {
+        MainCard,
+        SearchHeader,
+        FiltersMenu,
+        HistoryFooter
+    },
 }
 </script>
 
