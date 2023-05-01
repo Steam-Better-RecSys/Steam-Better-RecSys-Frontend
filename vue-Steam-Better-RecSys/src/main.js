@@ -6,8 +6,8 @@ import store from './stores'
 
 import {library} from "@fortawesome/fontawesome-svg-core";
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
-import {far, faThumbsUp, faThumbsDown, faHeart} from "@fortawesome/free-regular-svg-icons";
-import {faS, faBan} from "@fortawesome/free-solid-svg-icons";
+import {far} from "@fortawesome/free-regular-svg-icons";
+import {faS, faBan, faWandMagic, faThumbsUp, faThumbsDown, faHeart} from "@fortawesome/free-solid-svg-icons";
 import {faForward, faBackward} from "@fortawesome/free-solid-svg-icons";
 
 import 'vuetify/styles'
@@ -34,7 +34,7 @@ const vuetify = createVuetify({
 
 const app = createApp(App)
 
-library.add(faS, far, faThumbsUp, faThumbsDown, faBan, faHeart, faForward, faBackward)
+library.add(faS, far, faThumbsUp, faThumbsDown, faBan, faHeart, faForward, faBackward, faWandMagic)
 
 app.use(store)
 app.use(router)
