@@ -9,7 +9,7 @@
                            :gameId="recommendedGames[currentGameIndex].gameId"
       />
     </div>
-    <div class="col-6 d-flex flex-row justify-content-around mt-3">
+    <div v-if="isLoaded" class="col-6 d-flex flex-row justify-content-around mt-3">
       <button type="button" class="btn btn-primary">
         <font-awesome-icon icon="fas fa-ban"/>
         Blacklist
@@ -55,14 +55,17 @@ export default {
           horizontalImageUrl: 'test'
         }
       ],
-      currentGameIndex: 0
+      currentGameIndex: 0,
+      isLoaded: false
     }
   },
   methods: {
-    ...mapActions(useGamesStore, ['getRecommendedGames', 'setSelectedGames']),
+    ...mapActions(useGamesStore, ['getRecommendedGames']),
     async getRecommendedGame(gameId, gameStatus) {
+      this.isLoaded = false
       this.recommendedGames = await this.getRecommendedGames(gameId, gameStatus)
       this.currentGameIndex = 0
+      this.isLoaded = true
     },
     async getNextRecommendedGame() {
       this.currentGameIndex += 1
@@ -76,7 +79,6 @@ export default {
   },
   beforeMount() {
     this.getRecommendedGame(0, 0)
-    // this.setSelectedGames('730')
   }
 }
 </script>
