@@ -1,5 +1,5 @@
 <template>
-    <search-header />
+    <Header />
     <div class="d-flex justify-center align-center flex-column">
         <div class="d-flex flex-row justify-content-center mt-2">
             <recommendation-card
@@ -52,7 +52,7 @@
 
 <script>
 import RecommendationCard from '@/components/RecommendationCard.vue';
-import SearchHeader from '@/components/SearchHeader.vue';
+import Header from '@/components/Header.vue';
 import { mapActions } from 'pinia/dist/pinia';
 import useGamesStore from '@/stores/games';
 
@@ -60,7 +60,7 @@ export default {
     name: 'RecommendationView',
     components: {
         RecommendationCard,
-        SearchHeader,
+        Header,
     },
     data() {
         return {

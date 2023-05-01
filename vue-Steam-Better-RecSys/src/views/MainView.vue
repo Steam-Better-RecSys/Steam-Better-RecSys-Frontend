@@ -1,22 +1,22 @@
 <template>
-    <search-header />
+    <Header />
     <filters-menu />
     <main-card />
-    <history-footer />
+    <Footer />
 </template>
 
 <script>
-import SearchHeader from '@/components/SearchHeader.vue';
+import Header from '@/components/Header.vue';
 import FiltersMenu from '@/components/FiltersMenu.vue';
 import MainCard from '@/components/MainCard.vue';
-import HistoryFooter from '@/components/Footer.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
     components: {
         MainCard,
-        SearchHeader,
+        Header,
         FiltersMenu,
-        HistoryFooter,
+        Footer,
     },
 };
 </script>

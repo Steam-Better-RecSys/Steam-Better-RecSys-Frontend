@@ -1,5 +1,5 @@
 <template>
-    <footer class="mt-auto">
+    <footer class="mt-2">
         <div class="text-center py-2">
             <p>Something wrong/broken/stupid?</p>
             <p>Contact evlko dot oklve at gmail</p>
