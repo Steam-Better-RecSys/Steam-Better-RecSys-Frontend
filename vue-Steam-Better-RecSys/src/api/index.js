@@ -3,8 +3,8 @@ import GamesAPI from "@/api/games"
 import RecommendationsAPI from "@/api/recommendations"
 import TagsAPI from "@/api/tags"
 
-const recommendationsAPI = new GamesAPI(instance)
-const gamesAPI = new RecommendationsAPI(instance)
+const recommendationsAPI = new RecommendationsAPI(instance)
+const gamesAPI = new GamesAPI(instance)
 const tagsAPI = new TagsAPI(instance)
 
 export {
