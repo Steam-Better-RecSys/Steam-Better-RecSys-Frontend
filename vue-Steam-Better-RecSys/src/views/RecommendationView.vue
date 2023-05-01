@@ -2,14 +2,34 @@
   <search-header/>
   <div class="wrapper d-flex justify-center align-center flex-column">
     <div class="col-6 d-flex flex-row justify-content-center mt-2">
-      <recommendation-card :name="recommendedGame.title" :description="recommendedGame.description" :image="recommendedGame.horizontalImageUrl"/>
+      <recommendation-card :name="recommendedGames[currentGameIndex].title"
+                           :description="recommendedGames[currentGameIndex].description"
+                           :image="recommendedGames[currentGameIndex].horizontalImageUrl"
+                           :nameSlug="recommendedGames[currentGameIndex].nameSlug"
+                           :gameId="recommendedGames[currentGameIndex].gameId"
+      />
     </div>
     <div class="col-6 d-flex flex-row justify-content-around mt-3">
-      <button type="button" class="btn btn-primary">Blacklist</button>
-      <button type="button" class="btn btn-primary">Dislike</button>
-      <button type="button" class="btn btn-primary">Ignore</button>
-      <button type="button" class="btn btn-primary">Like</button>
-      <button type="button" class="btn btn-primary">Wishlist</button>
+      <button type="button" class="btn btn-primary">
+        <font-awesome-icon icon="fas fa-ban"/>
+        Blacklist
+      </button>
+      <button type="button" class="btn btn-outline-primary" @click="this.dislikeRecommendedGame()">
+        <font-awesome-icon icon="fas fa-thumbs-down"/>
+        Dislike
+      </button>
+      <button type="button" class="btn btn-light" @click="this.getNextRecommendedGame()">
+        <font-awesome-icon icon="fas fa-forward"/>
+        Ignore
+      </button>
+      <button type="button" class="btn btn-outline-primary" @click="this.likeRecommendedGame()">
+        <font-awesome-icon icon="fas fa-thumbs-up"/>
+        Like
+      </button>
+      <button type="button" class="btn btn-primary">
+        <font-awesome-icon icon="fas fa-heart"/>
+        Wishlist
+      </button>
     </div>
   </div>
 </template>
@@ -24,30 +44,43 @@ export default {
   name: "RecommendationView",
   components: {
     RecommendationCard,
-    SearchHeader
+    SearchHeader,
   },
   data() {
     return {
-      recommendedGame: null,
+      recommendedGames: [
+        {
+          title: 'test',
+          description: 'test',
+          horizontalImageUrl: 'test'
+        }
+      ],
+      currentGameIndex: 0
     }
   },
   methods: {
-    ...mapActions(useGamesStore, ['getRecommendedGame', 'updateCurrentGameDescription']),
-    async getGame() {
-      this.recommendedGame = await this.getRecommendedGame()
-
-      if (this.recommendedGame.description == null) {
-        this.recommendedGame = await this.updateCurrentGameDescription()
-        console.log(this.recommendedGame.description)
-      }
+    ...mapActions(useGamesStore, ['getRecommendedGames', 'setSelectedGames']),
+    async getRecommendedGame(gameId, gameStatus) {
+      this.recommendedGames = await this.getRecommendedGames(gameId, gameStatus)
+      this.currentGameIndex = 0
     },
+    async getNextRecommendedGame() {
+      this.currentGameIndex += 1
+    },
+    async likeRecommendedGame() {
+      await this.getRecommendedGame(this.recommendedGames[this.currentGameIndex].gameId, 1)
+    },
+    async dislikeRecommendedGame() {
+      await this.getRecommendedGame(this.recommendedGames[this.currentGameIndex].gameId, -1)
+    }
   },
   beforeMount() {
-    this.getGame()
+    this.getRecommendedGame(0, 0)
+    // this.setSelectedGames('730')
   }
 }
 </script>
 
 <style scoped>
-
+@import "../styles/main.css";
 </style>

@@ -1,12 +1,13 @@
 :root {
     --bg-color: #121212;
     --additional-bg-color: #232d39;
+    --dark-bg-color: #757575;
 
     --main-text-color: #fff;
     --contast-text-color: #121212;
 
-    --main-theme-color: #512da8;
-    --secondary-theme-color: #512da8;
-    --dark-theme-color: #311b92;
-    --light-theme-color: #9575cd;
+    --main-theme-color: #d1c4e9;
+    --secondary-theme-color: #b39ddb;
+    --dark-theme-color: #9575cd;
+    --light-theme-color: #ede7f6;
 }

@@ -2,8 +2,8 @@
   <div class="card pa-5">
     <img class="card-img-top" :src="image" :alt="name">
     <div class="card-body pb-0">
-      <h1> {{ name }} </h1>
-      <p v-html="desc"></p>
+      <h1><a :href=getSteamLink> {{ name }} </a></h1>
+      <p v-html="description"></p>
     </div>
   </div>
 </template>
@@ -21,10 +21,16 @@ export default {
     description: {
       type: String,
     },
+    nameSlug: {
+      type: String
+    },
+    gameId: {
+      type: String
+    }
   },
-  data() {
-    return {
-      desc: this.description
+  computed: {
+    getSteamLink() {
+      return "https://store.steampowered.com/app/" + this.gameId + "/" + this.nameSlug
     }
   }
 }
