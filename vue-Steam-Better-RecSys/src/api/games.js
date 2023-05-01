@@ -1,6 +1,3 @@
-import {ca} from "vuetify/locale";
-import {fa} from "vuetify/iconsets/fa-svg";
-
 class GamesAPI {
     constructor(instance) {
         this.API = instance
