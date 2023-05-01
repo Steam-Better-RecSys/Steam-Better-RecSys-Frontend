@@ -1,5 +1,6 @@
 <template>
-    <div class="pagination d-lg-inline-flex">
+  <div class="d-flex align-center justify-content-center flex-row">
+    <div class="pagination">
         <a href="#">&laquo;</a>
         <a href="#" class="active">1</a>
         <a href="#">2</a>
@@ -9,6 +10,7 @@
         <a href="#">6</a>
         <a href="#">&raquo;</a>
     </div>
+  </div>
 </template>
 
 <script>
