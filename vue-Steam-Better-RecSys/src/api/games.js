@@ -1,3 +1,6 @@
+import {ca} from "vuetify/locale";
+import {fa} from "vuetify/iconsets/fa-svg";
+
 class GamesAPI {
     constructor(instance) {
         this.API = instance
@@ -6,7 +9,23 @@ class GamesAPI {
     getAllGames = async () => {
         return this.API({
             method: 'GET',
-            url: '/games'
+            url: '/games',
+            validateStatus: false,
+        })
+
+    }
+
+    getFilteredGames = async (searchParams) => {
+        const params = new URLSearchParams()
+
+        for (const elem of searchParams) {
+            params.append(elem[1], elem[0])
+        }
+
+        return this.API({
+            method: 'GET',
+            url: '/games',
+            params: params
         })
     }
 }
