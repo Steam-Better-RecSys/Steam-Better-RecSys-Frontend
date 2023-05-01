@@ -25,7 +25,7 @@ export default {
       type: String
     },
     gameId: {
-      type: String
+      type: Number
     }
   },
   computed: {
@@ -49,4 +49,8 @@ img {
   border-radius: 20px;
 }
 
+a {
+  text-decoration: None;
+  color: var(--main-theme-color)
+}
 </style>
