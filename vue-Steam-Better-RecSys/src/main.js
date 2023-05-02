@@ -13,7 +13,7 @@ import {
     faThumbsUp,
     faThumbsDown,
     faHeart,
-    faForward
+    faForward,
 } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,6 +1,6 @@
 <template>
     <img
-        class="game-img"
+        class="game-img rounded-3"
         :src="image"
         :alt="title"
         :id="id"
@@ -42,22 +42,19 @@ export default {
 
 <style scoped>
 .game-img {
-    width: 65%;
-    display: flex;
-    border-radius: 15px;
-    opacity: 0.7;
+    max-height: 200px;
+    transition: 0.3s;
 }
 
 .game-img.active {
-    opacity: 1;
-    -webkit-box-shadow: 0 0 25px #591fe7;
-    box-shadow: 0 0 25px #591fe7;
-    border-width: 5px;
-    border: red;
+    -webkit-box-shadow: 0 0 20px var(--dark-theme-color);
+    box-shadow: 0 0 20px var(--dark-theme-color);
+    transform: scale(1.03);
+    transition: 0.3s;
 }
 
 .game-img:hover {
-    transform: scale(1.03);
+    transform: scale(1.05);
     transition: 0.3s;
     cursor: pointer;
 }
