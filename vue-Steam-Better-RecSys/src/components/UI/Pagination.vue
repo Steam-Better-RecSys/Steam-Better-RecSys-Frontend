@@ -14,8 +14,16 @@
 </template>
 
 <script>
+import {mapState} from "pinia";
+import useGamesStore from "@/stores/games";
+
 export default {
     name: 'Pagination',
+    methods: {
+    },
+    computed: {
+        ...mapState(useGamesStore, ["games"]),
+    }
 };
 </script>
 
