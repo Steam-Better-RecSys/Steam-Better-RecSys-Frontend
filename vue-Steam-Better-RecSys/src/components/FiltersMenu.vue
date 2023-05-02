@@ -12,46 +12,48 @@
                         </th>
                     </tr>
                     <tr class="">
-                        <td height="200px" class="pr-7 py-4 align-top">
+                        <td height="200px" class=" py-4 align-top pa-5">
                             <div class="mb-4">
                                 <div
-                                    class="btn-group d-flex flex-column"
-                                    role="group"
-                                    v-for="option in sortOptions"
+                                        class="btn-group d-flex flex-column"
+                                        role="group"
+                                        v-for="option in sortOptions"
                                 >
                                     <input
-                                        type="radio"
-                                        class="btn-check btn-primary"
-                                        name="btnRadioSort"
-                                        autocomplete="off"
-                                        :id="option.sortId"
-                                        @change="selectSort(option.sortId)"
+                                            type="radio"
+                                            class="btn-check btn-primary"
+                                            name="btnRadioSort"
+                                            :checked="option.selected"
+                                            autocomplete="off"
+                                            :id="option.sortId"
+                                            @change="selectSort(option.sortId)"
                                     />
                                     <label
-                                        class="btn btn-outline-primary custom-control-label"
-                                        :for="option.sortId"
-                                        >{{ option.name }}</label
+                                            class="btn btn-outline-primary custom-control-label"
+                                            :for="option.sortId"
+                                    >{{ option.name }}</label
                                     >
                                 </div>
                             </div>
                             <div>
                                 <div
-                                    class="btn-group w-50"
-                                    role="group"
-                                    v-for="order in orderOptions"
+                                        class="btn-group w-50"
+                                        role="group"
+                                        v-for="order in orderOptions"
                                 >
                                     <input
-                                        type="radio"
-                                        class="btn-check btn-primary w-33"
-                                        autocomplete="off"
-                                        :id="order.orderId"
-                                        @change="selectOrder(order.orderId)"
-                                        name="btnRadioOrder"
+                                            type="radio"
+                                            class="btn-check btn-primary w-33"
+                                            autocomplete="off"
+                                            :id="order.orderId"
+                                            :checked="order.selected"
+                                            @change="selectOrder(order.orderId)"
+                                            name="btnRadioOrder"
                                     />
                                     <label
-                                        class="btn btn-outline-primary custom-control-label"
-                                        :for="order.orderId"
-                                        >{{ order.name }}</label
+                                            class="btn btn-outline-primary custom-control-label"
+                                            :for="order.orderId"
+                                    >{{ order.name }}</label
                                     >
                                 </div>
                             </div>
@@ -59,32 +61,32 @@
                         <td class="pt-4 d-flex flex-column justify-start">
                             <div>
                                 <div
-                                    class="btn-group mr-1"
-                                    role="group"
-                                    v-for="tagClass in tagClasses"
+                                        class="btn-group mr-1"
+                                        role="group"
+                                        v-for="tagClass in tagClasses"
                                 >
                                     <input
-                                        type="radio"
-                                        class="btn-check filtering"
-                                        name="btnradio"
-                                        :id="tagClass.id"
-                                        autocomplete="off"
-                                        @change="selectClass(tagClass.id)"
+                                            type="radio"
+                                            class="btn-check filtering"
+                                            name="btnradio"
+                                            :id="tagClass.id"
+                                            autocomplete="off"
+                                            @change="selectClass(tagClass.id)"
                                     />
                                     <label
-                                        class="btn btn-outline-primary custom-control-label"
-                                        :for="tagClass.id"
-                                        >{{ tagClass.name }}</label
+                                            class="btn btn-outline-primary custom-control-label"
+                                            :for="tagClass.id"
+                                    >{{ tagClass.name }}</label
                                     >
                                 </div>
                             </div>
 
                             <div class="tags d-flex mt-3" v-if="idClass">
                                 <button
-                                    type="button"
-                                    v-for="tag in idClass.tags"
-                                    class="btn btn-light btn-sm rounded-pill m-0"
-                                    @click="selectTag(tag.id)"
+                                        type="button"
+                                        v-for="tag in idClass.tags"
+                                        class="btn btn-light btn-sm rounded-pill m-0"
+                                        @click="selectTag(tag)"
                                 >
                                     {{ tag.name }}
                                 </button>
@@ -94,16 +96,16 @@
                     <tr>
                         <td colspan="12" class="pt-7">
                             <div
-                                class="col-12 d-flex justify-content-between mt-0 mb-1"
+                                    class="col-12 d-flex justify-content-between mt-0 mb-1"
                             >
                                 <div class="w-50 d-flex align-center">
                                     <div
-                                        class="w-25 d-flex justify-content-between align-center"
+                                            class="w-25 d-flex justify-content-between align-center"
                                     >
                                         <button
-                                            type="button"
-                                            class="btn btn-primary"
-                                            @click="sortAndFilter"
+                                                type="button"
+                                                class="btn btn-primary"
+                                                @click="sortAndFilter"
                                         >
                                             Sort & Filter
                                         </button>
@@ -111,8 +113,8 @@
                                     </div>
                                     <div>
                                         <span
-                                            v-for="option in selectedOptions"
-                                            >{{ option }}</span
+                                                v-for="option in selectedOptions"
+                                        >{{ option }}</span
                                         >
                                     </div>
                                 </div>
@@ -124,14 +126,14 @@
                         </td>
                     </tr>
                 </table>
-                <hr />
+                <hr/>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'pinia';
+import {mapActions, mapState} from 'pinia';
 import useTagsStore from '@/stores/tags';
 import useGamesStore from '@/stores/games';
 
@@ -145,27 +147,34 @@ export default {
                 {
                     name: 'Name',
                     sortId: 'title',
+                    selected: true,
                 },
                 {
                     name: 'Release date',
                     sortId: 'releaseDate',
+                    selected: false,
                 },
                 {
                     name: 'User Reviews',
                     sortId: 'reviews',
+                    selected: false,
                 },
             ],
             orderOptions: [
                 {
                     name: 'ASC',
                     orderId: 'asc',
+                    selected: true,
                 },
                 {
                     name: 'DESC',
                     orderId: 'desc',
+                    selected: false,
                 },
             ],
-            selectedOptions: new Map(),
+            selectedSort: new Map(),
+            selectedTags: new Map(),
+            selectedOptions: [],
         };
     },
     methods: {
@@ -192,28 +201,32 @@ export default {
             }
         },
 
-        selectTag(id) {
-            this.selectedOptions.set(id, 'tag');
+        selectTag(tag) {
+            this.selectedTags.set(tag.id, 'tag')
         },
 
         selectSort(id) {
-            this.selectedOptions.set(id, 'sort');
+            this.selectedSort.set('sort', id);
         },
 
         selectOrder(id) {
-            this.selectedOptions.set(id, 'order');
+            this.selectedSort.set('order', id);
         },
 
         async sortAndFilter() {
-            await this.getFilteredGamesStore(this.selectedOptions);
-            this.selectedOptions = new Map();
+            await this.getFilteredGamesStore(this.selectedSort, this.selectedTags);
         },
+        preset() {
+            this.selectedSort.set('sort', 'title')
+            this.selectedSort.set('order', 'asc')
+        }
     },
     computed: {
         ...mapState(useTagsStore, ['tags']),
     },
     mounted() {
         this.renderTags();
+        this.preset()
     },
 };
 </script>

@@ -12,8 +12,8 @@ const useGamesStore = defineStore('gameSystems', {
             this.games = response.data[0];
         },
 
-        async getFilteredGamesStore(searchParams) {
-            const response = await gamesAPI.getFilteredGames(searchParams);
+        async getFilteredGamesStore(sort, tags) {
+            const response = await gamesAPI.getFilteredGames(sort, tags);
             this.games = response.data[0];
         },
 
