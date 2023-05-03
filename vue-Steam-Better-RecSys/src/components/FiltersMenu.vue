@@ -76,20 +76,16 @@
                                     <label
                                             class="btn btn-outline-primary custom-control-label"
                                             :for="tagClass.id"
-                                    >{{ tagClass.name }}</label
-                                    >
+                                    >{{ tagClass.name }}</label>
                                 </div>
                             </div>
 
                             <div class="tags d-flex mt-3" v-if="idClass">
-                                <button
-                                        type="button"
-                                        v-for="tag in idClass.tags"
-                                        class="btn btn-light btn-sm rounded-pill m-0"
-                                        @click="selectTag(tag)"
-                                >
-                                    {{ tag.name }}
-                                </button>
+                                <tag-button :tag="tag"
+                                            v-for="tag in idClass.tags"
+                                            @selection-event="selectTag"
+                                            @deletion-event="deleteTag"
+                                />
                             </div>
                         </td>
                     </tr>
@@ -112,10 +108,7 @@
                                         <span>You chose:</span>
                                     </div>
                                     <div>
-                                        <span
-                                                v-for="option in selectedOptions"
-                                        >{{ option }}</span
-                                        >
+                                       <chosen-tag :tag="tag" v-for="tag in tags" @delete-selected="deleteTag"/>
                                     </div>
                                 </div>
 
@@ -136,9 +129,14 @@
 import {mapActions, mapState} from 'pinia';
 import useTagsStore from '@/stores/tags';
 import useGamesStore from '@/stores/games';
+import TagButton from "@/components/UI/TagButton.vue";
+import ChosenTag from "@/components/UI/ChosenTag.vue";
 
 export default {
-    components: {},
+    components: {
+        ChosenTag,
+        TagButton,
+    },
     data() {
         return {
             tagClasses: [],
@@ -179,7 +177,7 @@ export default {
     },
     methods: {
         ...mapActions(useGamesStore, ['getFilteredGamesStore']),
-        ...mapActions(useTagsStore, ['getAllTagsStore', 'updateOptionsState']),
+        ...mapActions(useTagsStore, ['getAllTagsStore', 'getAllTagsById']),
 
         async renderTags() {
             this.tagClasses = await this.getAllTagsStore();
@@ -201,8 +199,16 @@ export default {
             }
         },
 
-        selectTag(tag) {
-            this.selectedTags.set(tag.id, 'tag')
+        async selectTag(id) {
+            console.log('selection')
+            this.selectedTags.set(id, 'tag')
+            await this.getAllTagsById(this.selectedTags)
+        },
+
+        async deleteTag(id) {
+            console.log('deletion')
+            this.selectedTags.delete(id)
+            await this.getAllTagsById(this.selectedTags)
         },
 
         selectSort(id) {
@@ -216,6 +222,7 @@ export default {
         async sortAndFilter() {
             await this.getFilteredGamesStore(this.selectedSort, this.selectedTags);
         },
+
         preset() {
             this.selectedSort.set('sort', 'title')
             this.selectedSort.set('order', 'asc')
@@ -228,6 +235,9 @@ export default {
         this.renderTags();
         this.preset()
     },
+    beforeMount() {
+        localStorage.removeItem('pinia_tags')
+    }
 };
 </script>
 
@@ -236,13 +246,6 @@ export default {
 
 .main-container {
     color: var(--main-text-color);
-}
-
-.main-row {
-    height: auto;
-}
-
-.sort-col {
 }
 
 .tags {
