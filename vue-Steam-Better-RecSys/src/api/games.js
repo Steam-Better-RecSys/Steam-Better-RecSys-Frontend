@@ -1,5 +1,3 @@
-import {el} from "vuetify/locale";
-
 class GamesAPI {
     constructor(instance) {
         this.API = instance;
