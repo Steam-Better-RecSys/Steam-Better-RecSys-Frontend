@@ -4,7 +4,7 @@
         :src="image"
         :alt="title"
         :id="id"
-        @click="setActive(id)"
+        @click="setActive()"
         :class="{ active: isActive }"
         @error="setImage($event.currentTarget)"
     />
@@ -30,7 +30,7 @@ export default {
         },
     },
     methods: {
-        setActive(id) {
+        setActive() {
             this.isActive = !this.isActive;
         },
         setImage(image) {
