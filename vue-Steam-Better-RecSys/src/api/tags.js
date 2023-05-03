@@ -9,6 +9,13 @@ class TagsAPI {
             url: '/classes',
         });
     };
+
+    getTagById = async (id) => {
+        return this.API({
+            method: 'GET',
+            url: `/tags/${id}`
+        })
+    }
 }
 
 export default TagsAPI;
