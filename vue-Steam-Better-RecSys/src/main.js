@@ -9,11 +9,12 @@ import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import {
     faS,
     faBan,
-    faWandMagic,
+    faWandMagicSparkles,
     faThumbsUp,
     faThumbsDown,
     faHeart,
     faForward,
+    faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -28,7 +29,8 @@ library.add(
     faBan,
     faHeart,
     faForward,
-    faWandMagic
+    faWandMagicSparkles,
+    faMagnifyingGlass
 );
 
 app.use(store);
