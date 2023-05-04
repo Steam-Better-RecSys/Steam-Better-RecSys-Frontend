@@ -1,14 +1,16 @@
 <template>
-    <div class="d-flex flex-wrap justify-content-center">
-        <div class="mb-3 mx-3" v-for="game in games">
-            <GameCard
-                :title="game.title"
-                :image="game.verticalImageUrl"
-                :id="game.id"
-            />
+    <div class="d-flex flex-column flex-grow-1">
+        <div class="d-flex flex-row flex-wrap justify-content-center">
+            <div class="mb-3 mx-3" v-for="game in games">
+                <GameCard
+                    :title="game.title"
+                    :image="game.verticalImageUrl"
+                    :id="game.id"
+                />
+            </div>
         </div>
+        <Pagination />
     </div>
-    <Pagination />
 </template>
 
 <script>

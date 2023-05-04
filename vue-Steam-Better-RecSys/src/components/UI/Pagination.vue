@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex align-center justify-content-center flex-row">
+    <div class="d-flex align-center justify-content-center flex-row mt-auto mb-2">
         <div class="pagination">
             <a href="#">&laquo;</a>
             <a href="#" class="active">1</a>
