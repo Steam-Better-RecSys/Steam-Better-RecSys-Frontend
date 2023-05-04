@@ -1,8 +1,8 @@
 <template>
     <div class="px-4 py-2">
-        <div class="d-flex flex-row">
-            <div class="d-flex flex-column col-2">
-                <p class="mb-1"><b>Sorting</b></p>
+        <div class="d-flex flex-row flex-wrap-reverse flex-md-nowrap">
+            <div class="d-flex flex-column col-12 col-sm-12 col-md-2">
+                <p class="d-none d-sm-none d-md-block mb-1"><b>Sorting</b></p>
                 <div class="mb-2">
                     <div
                         class="btn-group d-flex flex-column"
@@ -48,8 +48,8 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-column col-10 mx-2">
-                <p class="mb-1"><b>Filtering</b></p>
+            <div class="d-flex flex-column col-12 col-sm-12 col-md-10 mx-2">
+                <p class="d-none d-sm-none d-md-block mb-1"><b>Filtering</b></p>
                 <div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item" v-for="tagClass in tagClasses">
@@ -69,7 +69,7 @@
             </div>
         </div>
         <div class="d-flex flex-row mt-3">
-            <div class="d-flex flex-column col-2">
+            <div class="d-flex flex-column col-6 col-sm-6 col-md-2">
                 <button
                     type="button"
                     class="btn btn-primary"
@@ -79,7 +79,7 @@
                     Search
                 </button>
             </div>
-            <div class="d-flex flex-row col-8 overflow-auto">
+            <div class="d-none d-sm-none d-md-flex flex-row col-8 overflow-auto mx-2">
                 <div class="flex-shrink-0"  v-for="tag in tags">
                     <tag-button :tag="tag"
                                 class="selected"
@@ -88,7 +88,7 @@
                     />
                 </div>
             </div>
-            <div class="d-flex flex-column col-2">
+            <div class="d-flex flex-column col-6 col-sm-6 col-md-2">
                 <button type="button" class="btn btn-primary">
                     <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
                     Do Magic
