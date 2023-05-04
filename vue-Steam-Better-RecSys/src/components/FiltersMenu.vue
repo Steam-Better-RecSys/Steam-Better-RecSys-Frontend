@@ -1,127 +1,101 @@
 <template>
-    <div class="main-container px-4 py-2">
-        <div class="wrapper" id="collapseSorting">
-            <div>
-                <table class="w-100">
-                    <tr>
-                        <th width="15%">
-                            <p class="mb-1 font-weight-black">Sorting</p>
-                        </th>
-                        <th>
-                            <p class="mb-1 font-weight-black">Filtering</p>
-                        </th>
-                    </tr>
-                    <tr class="">
-                        <td height="200px" class=" py-4 align-top pa-5">
-                            <div class="mb-4">
-                                <div
-                                        class="btn-group d-flex flex-column"
-                                        role="group"
-                                        v-for="option in sortOptions"
-                                >
-                                    <input
-                                            type="radio"
-                                            class="btn-check btn-primary"
-                                            name="btnRadioSort"
-                                            :checked="option.selected"
-                                            autocomplete="off"
-                                            :id="option.sortId"
-                                            @change="selectSort(option.sortId)"
-                                    />
-                                    <label
-                                            class="btn btn-outline-primary custom-control-label"
-                                            :for="option.sortId"
-                                    >{{ option.name }}</label
-                                    >
-                                </div>
-                            </div>
-                            <div>
-                                <div
-                                        class="btn-group w-50"
-                                        role="group"
-                                        v-for="order in orderOptions"
-                                >
-                                    <input
-                                            type="radio"
-                                            class="btn-check btn-primary w-33"
-                                            autocomplete="off"
-                                            :id="order.orderId"
-                                            :checked="order.selected"
-                                            @change="selectOrder(order.orderId)"
-                                            name="btnRadioOrder"
-                                    />
-                                    <label
-                                            class="btn btn-outline-primary custom-control-label"
-                                            :for="order.orderId"
-                                    >{{ order.name }}</label
-                                    >
-                                </div>
-                            </div>
-                        </td>
-                        <td class="pt-4 d-flex flex-column justify-start">
-                            <div>
-                                <div
-                                        class="btn-group mr-1"
-                                        role="group"
-                                        v-for="tagClass in tagClasses"
-                                >
-                                    <input
-                                            type="radio"
-                                            class="btn-check filtering"
-                                            name="btnradio"
-                                            :id="tagClass.id"
-                                            autocomplete="off"
-                                            @change="selectClass(tagClass.id)"
-                                    />
-                                    <label
-                                            class="btn btn-outline-primary custom-control-label"
-                                            :for="tagClass.id"
-                                    >{{ tagClass.name }}</label>
-                                </div>
-                            </div>
-
-                            <div class="tags d-flex mt-3" v-if="idClass">
-                                <tag-button :tag="tag"
-                                            v-for="tag in idClass.tags"
-                                            @selection-event="selectTag"
-                                            @deletion-event="deleteTag"
-                                />
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="12" class="pt-7">
-                            <div
-                                    class="col-12 d-flex justify-content-between mt-0 mb-1"
-                            >
-                                <div class="w-50 d-flex align-center">
-                                    <div
-                                            class="w-25 d-flex justify-content-between align-center"
-                                    >
-                                        <button
-                                                type="button"
-                                                class="btn btn-primary"
-                                                @click="sortAndFilter"
-                                        >
-                                            Sort & Filter
-                                        </button>
-                                        <span>You chose:</span>
-                                    </div>
-                                    <div>
-                                       <chosen-tag :tag="tag" v-for="tag in tags" @delete-selected="deleteTag"/>
-                                    </div>
-                                </div>
-
-                                <button type="button" class="btn btn-primary">
-                                    Do Magic
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-                <hr/>
+    <div class="px-4 py-2">
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column col-2">
+                <p class="mb-1"><b>Sorting</b></p>
+                <div class="mb-2">
+                    <div
+                        class="btn-group d-flex flex-column"
+                        role="group"
+                        v-for="option in sortOptions"
+                    >
+                        <input
+                            type="radio"
+                            class="btn-check btn-primary"
+                            name="btnRadioSort"
+                            :checked="option.selected"
+                            autocomplete="off"
+                            :id="option.sortId"
+                            @change="selectSort(option.sortId)"
+                        />
+                        <label
+                            class="btn btn-outline-primary custom-control-label border-0"
+                            :for="option.sortId"
+                        >{{ option.name }}</label
+                        >
+                    </div>
+                </div>
+                <div>
+                    <div
+                        class="btn-group w-50"
+                        role="group"
+                        v-for="order in orderOptions"
+                    >
+                        <input
+                            type="radio"
+                            class="btn-check"
+                            autocomplete="off"
+                            :id="order.orderId"
+                            :checked="order.selected"
+                            @change="selectOrder(order.orderId)"
+                            name="btnRadioOrder"
+                        />
+                        <label
+                            class="btn btn-outline-primary custom-control-label"
+                            :for="order.orderId"
+                        >{{ order.name }}</label
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column col-10 mx-2">
+                <p class="mb-1"><b>Filtering</b></p>
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item" v-for="tagClass in tagClasses">
+                            <a class="nav-link" :class="{ 'active': tagClass.id === this.idClass.id }" :id="tagClass.id" @click="selectClass(tagClass.id)"> {{ tagClass.name }} </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-2 d-flex flex-wrap" v-if="idClass">
+                    <tag-button :tag="tag"
+                                v-for="tag in idClass.tags"
+                                :isSelected=this.selectedTags.has(tag.id)
+                                :class="{ 'selected': this.selectedTags.has(tag.id) }"
+                                @selection-event="selectTag"
+                                @deletion-event="deleteTag"
+                    />
+                </div>
             </div>
         </div>
+        <div class="d-flex flex-row mt-3">
+            <div class="d-flex flex-column col-2">
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    @click="sortAndFilter"
+                >
+                    <font-awesome-icon icon="fas fa-magnifying-glass" />
+                    Search
+                </button>
+            </div>
+            <div class="d-flex flex-row col-8 overflow-auto">
+                <div class="flex-shrink-0"  v-for="tag in tags">
+                    <tag-button :tag="tag"
+                                class="selected"
+                                @selection-event="deleteTag"
+                                @deletion-event="deleteTag"
+                    />
+                </div>
+            </div>
+            <div class="d-flex flex-column col-2">
+                <button type="button" class="btn btn-primary">
+                    <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
+                    Do Magic
+                </button>
+            </div>
+        </div>
+        <hr/>
     </div>
 </template>
 
@@ -140,7 +114,7 @@ export default {
     data() {
         return {
             tagClasses: [],
-            idClass: null,
+            idClass: 0,
             sortOptions: [
                 {
                     name: 'Name',
@@ -232,24 +206,27 @@ export default {
         ...mapState(useTagsStore, ['tags']),
     },
     mounted() {
-        this.renderTags();
         this.preset()
+        this.renderTags().then(
+            res => {
+                this.selectClass(1)
+            }
+        )
     },
     beforeMount() {
         localStorage.removeItem('pinia_tags')
-    }
+    },
 };
 </script>
 
 <style scoped>
 @import '../styles/main.css';
 
-.main-container {
-    color: var(--main-text-color);
+a {
+    color: var(--main-theme-color)
 }
 
-.tags {
-    flex-wrap: wrap;
-    gap: 20px;
+a:hover {
+    color: var(--light-theme-color)
 }
 </style>
