@@ -73,3 +73,19 @@
 p {
     color: var(--main-text-color);
 }
+
+a {
+    color: var(--main-theme-color)
+}
+
+.toast-header {
+    color: var(--main-theme-color);
+    background-color: var(--bg-color);
+    opacity: 100%;
+}
+
+.toast-body {
+    color: var(--main-text-color);
+    background-color: var(--bg-color);
+    opacity: 90%;
+}
