@@ -1,13 +1,16 @@
 <template>
-    <img
-            class="game-img rounded-3"
-            :src="image"
-            :alt="title"
-            :id="id"
-            @click="setActive(gameId)"
-            :class="{ active: isActive }"
-            @error="setImage($event.currentTarget)"
-    />
+    <div class="container p-0 m-0">
+        <img
+                class="game-img rounded-3"
+                :src="image"
+                :alt="title"
+                :id="id"
+                @click="setActive(gameId)"
+                :class="{ active: isActive }"
+                @error="setImage($event.currentTarget)"
+        />
+        <div class="centered" v-if="showTitle"> {{ title }} </div>
+    </div>
 </template>
 
 <script>
@@ -16,6 +19,7 @@ export default {
     data() {
         return {
             isActive: false,
+            showTitle: false
         };
     },
     props: {
@@ -39,6 +43,7 @@ export default {
         },
         setImage(image) {
             image.setAttribute('src', 'src/assets/Image404.png');
+            this.showTitle = true;
         },
     },
     emits: ['selectGame', 'deleteGame']
@@ -62,5 +67,18 @@ export default {
     transform: scale(1.05);
     transition: 0.3s;
     cursor: pointer;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: var(--main-text-color);
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 </style>
