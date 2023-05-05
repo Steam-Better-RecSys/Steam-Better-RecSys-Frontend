@@ -222,4 +222,12 @@ a {
 a:hover {
     color: var(--light-theme-color)
 }
+
+.nav-tabs .nav-link {
+    cursor: pointer;
+}
+
+.nav-tabs .nav-link.active {
+    cursor: default;
+}
 </style>
