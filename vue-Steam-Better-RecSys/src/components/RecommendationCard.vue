@@ -49,7 +49,6 @@ export default {
     border: 5px solid var(--additional-bg-color);
     border-radius: 30px;
     color: var(--main-text-color);
-    width: 40rem;
 }
 
 img {

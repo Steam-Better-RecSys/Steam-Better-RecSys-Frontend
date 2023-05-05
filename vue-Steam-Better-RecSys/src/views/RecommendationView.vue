@@ -1,7 +1,7 @@
 <template>
     <Header />
     <div class="d-flex flex-grow-1 align-items-center flex-column">
-        <div class="d-flex flex-grow-1 flex-row align-items-center justify-content-center">
+        <div class="mt-5 mb-3 w-50">
             <recommendation-card
                 :name="recommendedGames[currentGameIndex].title"
                 :description="recommendedGames[currentGameIndex].description"
@@ -14,7 +14,7 @@
         </div>
         <div
             v-if="isLoaded"
-            class="d-flex flex-row justify-content-around w-50 mb-5"
+            class="d-flex flex-row w-50 justify-content-around mb-3"
         >
             <button type="button" class="btn btn-primary">
                 <font-awesome-icon icon="fas fa-ban" />
