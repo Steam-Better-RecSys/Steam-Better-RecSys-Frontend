@@ -1,12 +1,12 @@
 <template>
     <img
-        class="game-img rounded-3"
-        :src="image"
-        :alt="title"
-        :id="id"
-        @click="setActive()"
-        :class="{ active: isActive }"
-        @error="setImage($event.currentTarget)"
+            class="game-img rounded-3"
+            :src="image"
+            :alt="title"
+            :id="id"
+            @click="setActive(gameId)"
+            :class="{ active: isActive }"
+            @error="setImage($event.currentTarget)"
     />
 </template>
 
@@ -28,15 +28,20 @@ export default {
         id: {
             type: Number,
         },
+        gameId: {
+            type: Number,
+        }
     },
     methods: {
-        setActive() {
+        setActive(id) {
+            !this.isActive ? this.$emit('selectGame', id) : this.$emit('deleteGame', id)
             this.isActive = !this.isActive;
         },
         setImage(image) {
             image.setAttribute('src', 'src/assets/Image404.png');
         },
     },
+    emits: ['selectGame', 'deleteGame']
 };
 </script>
 
