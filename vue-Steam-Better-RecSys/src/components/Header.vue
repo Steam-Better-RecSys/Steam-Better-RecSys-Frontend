@@ -1,6 +1,6 @@
 <template>
     <header class="header sticky-top p-1 text-center">
-        <h1><b>Steam Wizzard</b></h1>
+        <h1><b>Steam Wizzard</b><sup><small>β</small></sup></h1>
     </header>
 </template>
 
