@@ -1,16 +1,17 @@
 <template>
     <Header />
     <div class="d-flex flex-grow-1 align-items-center flex-column">
-        <div class="mt-5 mb-3 w-50">
+        <div class="d-flex mt-5 mb-3 w-50" v-if="isLoaded">
             <recommendation-card
                 :name="recommendedGames[currentGameIndex].title"
                 :description="recommendedGames[currentGameIndex].description"
                 :image="recommendedGames[currentGameIndex].horizontalImageUrl"
                 :nameSlug="recommendedGames[currentGameIndex].nameSlug"
                 :gameId="recommendedGames[currentGameIndex].gameId"
-                v-if="isLoaded"
             />
-            <p v-if="!isLoaded">Loading...</p>
+        </div>
+        <div class="d-flex flex-row flex-grow-1 justify-content-center align-items-center" v-if="!isLoaded">
+            <p>Loading...</p>
         </div>
         <div
             v-if="isLoaded"
