@@ -8,7 +8,9 @@
                 :image="recommendedGames[currentGameIndex].horizontalImageUrl"
                 :nameSlug="recommendedGames[currentGameIndex].nameSlug"
                 :gameId="recommendedGames[currentGameIndex].gameId"
+                v-if="isLoaded"
             />
+            <p v-if="!isLoaded">Loading...</p>
         </div>
         <div
             v-if="isLoaded"
