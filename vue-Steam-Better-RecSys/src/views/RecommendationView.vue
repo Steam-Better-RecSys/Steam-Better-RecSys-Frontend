@@ -1,7 +1,7 @@
 <template>
     <Header />
-    <div class="d-flex justify-center align-center flex-column">
-        <div class="d-flex flex-row justify-content-center mt-2">
+    <div class="d-flex flex-grow-1 align-items-center flex-column">
+        <div class="d-flex flex-grow-1 flex-row align-items-center justify-content-center">
             <recommendation-card
                 :name="recommendedGames[currentGameIndex].title"
                 :description="recommendedGames[currentGameIndex].description"
@@ -14,7 +14,7 @@
         </div>
         <div
             v-if="isLoaded"
-            class="d-flex flex-row justify-content-around mt-3"
+            class="d-flex flex-row justify-content-around w-50 mb-5"
         >
             <button type="button" class="btn btn-primary">
                 <font-awesome-icon icon="fas fa-ban" />
@@ -32,6 +32,7 @@
                 type="button"
                 class="btn btn-light"
                 @click="this.getNextRecommendedGame()"
+                v-if="currentGameIndex < 9"
             >
                 <font-awesome-icon icon="fas fa-forward" />
                 Ignore
@@ -50,11 +51,13 @@
             </button>
         </div>
     </div>
+    <Footer />
 </template>
 
 <script>
 import RecommendationCard from '@/components/RecommendationCard.vue';
 import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 import { mapActions } from 'pinia/dist/pinia';
 import useGamesStore from '@/stores/games';
 
@@ -63,6 +66,7 @@ export default {
     components: {
         RecommendationCard,
         Header,
+        Footer
     },
     data() {
         return {
