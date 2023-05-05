@@ -81,13 +81,15 @@
                     Search
                 </button>
             </div>
-            <div class="d-none d-sm-none d-md-flex flex-row col-8 overflow-auto mx-2">
-                <div class="flex-shrink-0" v-for="tag in tags">
-                    <tag-button :tag="tag"
-                                class="selected"
-                                @selection-event="deleteTag"
-                                @deletion-event="deleteTag"
-                    />
+            <div class="d-none d-sm-none d-md-flex flex-column col-8">
+                <div class="d-flex flex-row overflow-auto mx-2">
+                    <div class="flex-shrink-0" v-for="tag in tags">
+                        <tag-button :tag="tag"
+                                    class="selected"
+                                    @selection-event="deleteTag"
+                                    @deletion-event="deleteTag"
+                        />
+                    </div>
                 </div>
             </div>
             <div class="d-flex flex-column col-6 col-sm-6 col-md-2">
