@@ -1,14 +1,9 @@
 <template>
     <div class="d-flex align-center justify-content-center flex-row mt-auto mb-2">
         <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#" class="active">1</a>
-            <a href="#">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">5</a>
-            <a href="#">6</a>
-            <a href="#">&raquo;</a>
+            <a @click="getPrevPage" :aria-disabled="!this.currentPage>1">&laquo;</a>
+            <a class="page" v-for="page in pages" @click="sendPage(page)">{{ page }}</a>
+            <a @click="getNextPage" :aria-disabled="this.currentPage < this.pages.length-1">&raquo;</a>
         </div>
     </div>
 </template>
@@ -19,11 +14,29 @@ import useGamesStore from "@/stores/games";
 
 export default {
     name: 'Pagination',
+    data() {
+        return {
+            currentPage: 1,
+        }
+    },
     methods: {
+        sendPage(page) {
+            this.$emit('pageChange', (page - 1) * 50)
+            this.currentPage = page
+        },
+        getNextPage() {
+            this.currentPage++
+            this.sendPage(this.currentPage)
+        },
+        getPrevPage() {
+            this.currentPage--
+            this.sendPage(this.currentPage)
+        }
     },
     computed: {
-        ...mapState(useGamesStore, ["games"]),
-    }
+        ...mapState(useGamesStore, ["pages"]),
+    },
+    emits: ['pageChange'],
 };
 </script>
 
@@ -39,9 +52,10 @@ a {
 a:hover {
     background: var(--light-theme-color);
     color: var(--contast-text-color);
+    cursor: pointer;
 }
 
-a.active {
+a.page {
     background-color: #6e4bc2;
     color: white;
 }
