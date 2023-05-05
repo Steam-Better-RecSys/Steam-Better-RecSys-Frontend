@@ -9,7 +9,7 @@
                 :class="{ active: isActive }"
                 @error="setImage($event.currentTarget)"
         />
-        <div class="centered" v-if="showTitle"> {{ title }} </div>
+        <div class="centered" v-if="showTitle"><small> {{ title }} </small></div>
     </div>
 </template>
 
