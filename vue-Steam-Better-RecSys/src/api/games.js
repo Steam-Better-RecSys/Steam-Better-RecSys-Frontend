@@ -3,29 +3,16 @@ class GamesAPI {
         this.API = instance;
     }
 
-    getAllGames = async () => {
+    getFilteredGames = async (sort, tags, offset) => {
         const params = new URLSearchParams();
 
-        params.append('limit', '10')
-
-        return this.API({
-            method: 'GET',
-            url: '/games',
-            validateStatus: false,
-            params: params,
-        });
-    };
-
-    getFilteredGames = async (sort, tags) => {
-        const params = new URLSearchParams();
-
-        params.append('limit', '10')
+        params.append('offset', offset)
 
         for (const elem of sort) {
             params.append(elem[0], elem[1]);
         }
 
-        for(const elem of tags){
+        for (const elem of tags) {
             params.append(elem[1], elem[0])
         }
 
