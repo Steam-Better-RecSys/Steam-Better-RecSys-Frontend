@@ -3,7 +3,7 @@
         <img class="card-img-top" :src="image" :alt="name" />
         <div class="card-body pb-0">
             <h1>
-                <a :href="getSteamLink"> {{ name }} </a>
+                <b><a :href="getSteamLink"> {{ name }} </a></b>
             </h1>
             <p v-html="description"></p>
         </div>
