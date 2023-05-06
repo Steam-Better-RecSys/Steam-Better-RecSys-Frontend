@@ -1,55 +1,75 @@
 <template>
     <Header />
-    <div class="d-flex flex-grow-1 align-items-center flex-column">
-        <div class="d-flex mt-5 mb-3 w-50" v-if="isLoaded">
-            <recommendation-card
-                :name="recommendedGames[currentGameIndex].title"
-                :description="recommendedGames[currentGameIndex].description"
-                :image="recommendedGames[currentGameIndex].horizontalImageUrl"
-                :nameSlug="recommendedGames[currentGameIndex].nameSlug"
-                :gameId="recommendedGames[currentGameIndex].gameId"
-            />
-        </div>
-        <div class="d-flex flex-row flex-grow-1 justify-content-center align-items-center" v-if="!isLoaded">
-            <p>Loading...</p>
-        </div>
+    <div class="d-flex flex-grow-1 justify-content-center">
         <div
-            v-if="isLoaded"
-            class="d-flex flex-row w-50 justify-content-around mb-3"
+            class="d-flex flex-fill justify-content-center align-items-center"
+            v-if="!isLoaded"
         >
-            <button type="button" class="btn btn-primary">
-                <font-awesome-icon icon="fas fa-ban" />
-                Blacklist
-            </button>
-            <button
-                type="button"
-                class="btn btn-outline-primary"
-                @click="this.dislikeRecommendedGame()"
-            >
-                <font-awesome-icon icon="fas fa-thumbs-down" />
-                Dislike
-            </button>
-            <button
-                type="button"
-                class="btn btn-light"
-                @click="this.getNextRecommendedGame()"
-                v-if="currentGameIndex < 9"
-            >
-                <font-awesome-icon icon="fas fa-forward" />
-                Ignore
-            </button>
-            <button
-                type="button"
-                class="btn btn-outline-primary"
-                @click="this.likeRecommendedGame()"
-            >
-                <font-awesome-icon icon="fas fa-thumbs-up" />
-                Like
-            </button>
-            <button type="button" class="btn btn-primary">
-                <font-awesome-icon icon="fas fa-heart" />
-                Wishlist
-            </button>
+            <span>Loading...</span>
+        </div>
+        <div class="col-10 col-sm-10 col-md-8 col-lg-6" v-if="isLoaded">
+            <div class="d-flex justify-content-center row mt-4">
+                <recommendation-card
+                    :name="recommendedGames[currentGameIndex].title"
+                    :description="
+                        recommendedGames[currentGameIndex].description
+                    "
+                    :image="
+                        recommendedGames[currentGameIndex].horizontalImageUrl
+                    "
+                    :nameSlug="recommendedGames[currentGameIndex].nameSlug"
+                    :gameId="recommendedGames[currentGameIndex].gameId"
+                />
+            </div>
+            <div class="row d-flex justify-content-between mt-3 mb-2">
+                <div class="col-2 d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary flex-grow-1">
+                        <font-awesome-icon icon="fas fa-ban" />
+                        <span class="d-none d-sm-none d-md-block"
+                            >Blacklist</span
+                        >
+                    </button>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary flex-grow-1"
+                        @click="this.dislikeRecommendedGame()"
+                    >
+                        <font-awesome-icon icon="fas fa-thumbs-down" />
+                        <span class="d-none d-sm-none d-md-block">Dislike</span>
+                    </button>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <button
+                        type="button"
+                        class="btn btn-light flex-grow-1"
+                        @click="this.getNextRecommendedGame()"
+                        v-if="currentGameIndex < 9"
+                    >
+                        <font-awesome-icon icon="fas fa-forward" />
+                        <span class="d-none d-sm-none d-md-block">Ignore</span>
+                    </button>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <button
+                        type="button"
+                        class="btn btn-outline-primary flex-grow-1"
+                        @click="this.likeRecommendedGame()"
+                    >
+                        <font-awesome-icon icon="fas fa-thumbs-up" />
+                        <span class="d-none d-sm-none d-md-block">Like</span>
+                    </button>
+                </div>
+                <div class="col-2 d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary flex-grow-1">
+                        <font-awesome-icon icon="fas fa-heart" />
+                        <span class="d-none d-sm-none d-md-block"
+                            >Wishlist</span
+                        >
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
     <Footer />
@@ -67,7 +87,7 @@ export default {
     components: {
         RecommendationCard,
         Header,
-        Footer
+        Footer,
     },
     data() {
         return {
