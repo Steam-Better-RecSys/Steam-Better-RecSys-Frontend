@@ -14,24 +14,36 @@
             {{ tag.name }}
         </label>
         -->
-        <button class="btn btn-light btn-sm rounded-pill m-0" :id="tag.id" @click="[!isSelected ? this.$emit('selectionEvent', tag.id): this.$emit('deletionEvent', tag.id)]"> {{ tag.name }} </button>
+        <button
+            class="btn btn-light btn-sm rounded-pill m-0"
+            :id="tag.id"
+            @click="
+                [
+                    !isSelected
+                        ? this.$emit('selectionEvent', tag.id)
+                        : this.$emit('deletionEvent', tag.id),
+                ]
+            "
+        >
+            {{ tag.name }}
+        </button>
     </div>
 </template>
 
 <script>
 export default {
-    name: "TagButton",
+    name: 'TagButton',
     props: {
         tag: {
             type: Object,
-            required: true
+            required: true,
         },
         isSelected: {
-            type: Boolean
-        }
+            type: Boolean,
+        },
     },
     emits: ['selectionEvent', 'deletionEvent'],
-}
+};
 </script>
 
 <style scoped>
@@ -41,7 +53,8 @@ export default {
     border-color: var(--additional-bg-color);
 }
 
-.btn-light:hover, .selected .btn-light:hover {
+.btn-light:hover,
+.selected .btn-light:hover {
     color: var(--contast-text-color);
     background: var(--dark-theme-color);
     border-color: var(--dark-theme-color);

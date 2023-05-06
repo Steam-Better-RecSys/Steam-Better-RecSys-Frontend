@@ -3,21 +3,21 @@
         <div class="d-flex flex-row flex-wrap justify-content-center">
             <div class="mb-3 mx-3" v-for="game in games">
                 <GameCard
-                        :title="game.title"
-                        :image="game.verticalImageUrl"
-                        :id="game.id"
-                        :game-id="game.gameId"
-                        @select-game="handleSelect"
-                        @delete-game="handleDelete"
+                    :title="game.title"
+                    :image="game.verticalImageUrl"
+                    :id="game.id"
+                    :game-id="game.gameId"
+                    @select-game="handleSelect"
+                    @delete-game="handleDelete"
                 />
             </div>
         </div>
-        <Pagination @page-change="handleOffset"/>
+        <Pagination @page-change="handleOffset" />
     </div>
 </template>
 
 <script>
-import {mapActions, mapState} from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import useGamesStore from '@/stores/games';
 import Pagination from '@/components/UI/Pagination.vue';
 import GameCard from '@/components/GameCard.vue';
@@ -28,27 +28,30 @@ export default {
         return {
             offset: 0,
             selectedGames: new Set(),
-        }
+        };
     },
     components: {
         GameCard,
         Pagination,
     },
     methods: {
-        ...mapActions(useGamesStore, ['getFilteredGamesStore', "setSelectedState"]),
+        ...mapActions(useGamesStore, [
+            'getFilteredGamesStore',
+            'setSelectedState',
+        ]),
         async render() {
-            await this.getFilteredGamesStore(new Map(), new Map(), this.offset)
+            await this.getFilteredGamesStore(new Map(), new Map(), this.offset);
         },
         handleOffset(offset) {
-            this.offset = offset
+            this.offset = offset;
         },
         handleSelect(id) {
-            this.selectedGames.add(id)
-            this.setSelectedState(Array.from(this.selectedGames))
+            this.selectedGames.add(id);
+            this.setSelectedState(Array.from(this.selectedGames));
         },
         handleDelete(id) {
-            this.selectedGames.delete(id)
-            this.setSelectedState(Array.from(this.selectedGames))
+            this.selectedGames.delete(id);
+            this.setSelectedState(Array.from(this.selectedGames));
         },
     },
     computed: {
@@ -59,9 +62,9 @@ export default {
     },
     watch: {
         async offset(offset) {
-            await this.getFilteredGamesStore(new Map(), new Map(), offset)
-        }
-    }
+            await this.getFilteredGamesStore(new Map(), new Map(), offset);
+        },
+    },
 };
 </script>
 
