@@ -1,21 +1,23 @@
 <template>
     <header class="header sticky-top p-1 text-center">
         <div @click="goHome()">
-            <h1><b>Steam Wizzard</b><sup><small>β</small></sup></h1>
+            <h1>
+                <b>Steam Wizzard</b><sup><small>β</small></sup>
+            </h1>
         </div>
     </header>
 </template>
 
 <script>
-import router from "../router";
+import router from '../router';
 
 export default {
     name: 'Header',
     methods: {
         goHome() {
-            router.push({ path: '/', replace: true })
-        }
-    }
+            router.push({ path: '/', replace: true });
+        },
+    },
 };
 </script>
 

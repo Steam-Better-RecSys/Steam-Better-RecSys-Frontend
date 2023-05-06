@@ -1,15 +1,17 @@
 <template>
     <div class="container p-0 m-0">
         <img
-                class="game-img rounded-3"
-                :src="image"
-                :alt="title"
-                :id="id"
-                @click="setActive(gameId)"
-                :class="{ active: isActive }"
-                @error="setImage($event.currentTarget)"
+            class="game-img rounded-3"
+            :src="image"
+            :alt="title"
+            :id="id"
+            @click="setActive(gameId)"
+            :class="{ active: isActive }"
+            @error="setImage($event.currentTarget)"
         />
-        <div class="centered" v-if="showTitle"><small> {{ title }} </small></div>
+        <div class="centered" v-if="showTitle">
+            <small> {{ title }} </small>
+        </div>
     </div>
 </template>
 
@@ -19,7 +21,7 @@ export default {
     data() {
         return {
             isActive: false,
-            showTitle: false
+            showTitle: false,
         };
     },
     props: {
@@ -34,11 +36,13 @@ export default {
         },
         gameId: {
             type: Number,
-        }
+        },
     },
     methods: {
         setActive(id) {
-            !this.isActive ? this.$emit('selectGame', id) : this.$emit('deleteGame', id)
+            !this.isActive
+                ? this.$emit('selectGame', id)
+                : this.$emit('deleteGame', id);
             this.isActive = !this.isActive;
         },
         setImage(image) {
@@ -46,7 +50,7 @@ export default {
             this.showTitle = true;
         },
     },
-    emits: ['selectGame', 'deleteGame']
+    emits: ['selectGame', 'deleteGame'],
 };
 </script>
 
