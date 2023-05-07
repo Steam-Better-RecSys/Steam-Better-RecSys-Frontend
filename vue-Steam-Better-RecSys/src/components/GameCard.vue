@@ -1,16 +1,38 @@
 <template>
-    <div class="container p-0 m-0">
+    <div
+        class="container p-0 m-0 rounded-3"
+        :class="{ active: isActive }"
+        @mouseover="showButton = true"
+        @mouseleave="showButton = false"
+    >
         <img
-            class="game-img rounded-3"
+            class="game-img"
+            :class="{ 'broken-img': isBroken }"
             :src="image"
             :alt="title"
             :id="id"
-            @click="setActive(gameId)"
-            :class="{ active: isActive }"
             @error="setImage($event.currentTarget)"
+            @load="checkImage($event.currentTarget)"
+            @click="setActive(gameId)"
         />
-        <div class="centered" v-if="showTitle">
+        <div class="centered disable-events text-blend" v-show="isBroken">
             <small> {{ title }} </small>
+        </div>
+        <div class="right-top" v-show="showButton">
+            <button
+                role="link"
+                class="btn btn-sm btn-light flex-grow-1"
+                @click="
+                    openInNewTab(
+                        'https://store.steampowered.com/app/' +
+                            this.gameId +
+                            '/' +
+                            this.nameSlug
+                    )
+                "
+            >
+                <font-awesome-icon icon="fas fa-up-right-from-square" />
+            </button>
         </div>
     </div>
 </template>
@@ -20,8 +42,8 @@ export default {
     name: 'GameCard',
     data() {
         return {
-            isActive: false,
-            showTitle: false,
+            isBroken: false,
+            showButton: false,
         };
     },
     props: {
@@ -37,17 +59,31 @@ export default {
         gameId: {
             type: Number,
         },
+        nameSlug: {
+            type: String,
+        },
+        isActive: {
+            type: Boolean,
+        },
+        brokenImage: {
+            type: String,
+        },
     },
     methods: {
         setActive(id) {
             !this.isActive
                 ? this.$emit('selectGame', id)
                 : this.$emit('deleteGame', id);
-            this.isActive = !this.isActive;
         },
         setImage(image) {
-            image.setAttribute('src', 'src/assets/Image404.png');
-            this.showTitle = true;
+            image.setAttribute('src', this.brokenImage);
+            console.clear()
+        },
+        checkImage(image) {
+            this.isBroken = image.src !== this.image;
+        },
+        openInNewTab(url) {
+            window.open(url, '_blank', 'noreferrer');
         },
     },
     emits: ['selectGame', 'deleteGame'],
@@ -55,34 +91,57 @@ export default {
 </script>
 
 <style scoped>
+@import '../styles/main.css';
+
 .game-img {
+    height: auto;
+    width: 100%;
+}
+
+.broken-img {
+    width: auto;
+    filter: blur(10px);
+    -webkit-filter: blur(10px);
+}
+
+.container {
+    transition: 0.4s;
+    position: relative;
+    text-align: center;
+    color: var(--main-text-color);
     max-height: 200px;
-    transition: 0.3s;
+    max-width: 133px;
+    overflow: hidden;
 }
 
-.game-img.active {
-    -webkit-box-shadow: 0 0 20px var(--dark-theme-color);
-    box-shadow: 0 0 20px var(--dark-theme-color);
-    transform: scale(1.03);
-    transition: 0.3s;
-}
-
-.game-img:hover {
+.container:hover {
     transform: scale(1.05);
     transition: 0.3s;
     cursor: pointer;
 }
 
-.container {
-    position: relative;
-    text-align: center;
-    color: var(--main-text-color);
+.container.active {
+    transform: scale(1.03);
+    -webkit-box-shadow: 0 0 0 5px var(--dark-theme-color);
+    box-shadow: 0 0 0 5px var(--dark-theme-color);
+}
+
+.text-blend {
+    mix-blend-mode: lighten;
+    color: white;
 }
 
 .centered {
     position: absolute;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.right-top {
+    position: absolute;
+    top: 10%;
+    left: 85%;
     transform: translate(-50%, -50%);
 }
 </style>
