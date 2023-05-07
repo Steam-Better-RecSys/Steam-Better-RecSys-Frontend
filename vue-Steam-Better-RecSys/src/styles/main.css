@@ -74,3 +74,7 @@
 p {
     color: var(--main-text-color);
 }
+
+.disable-events {
+    pointer-events: none;
+}
