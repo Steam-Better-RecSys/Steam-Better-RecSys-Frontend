@@ -83,7 +83,7 @@ export default {
             this.isBroken = image.src !== this.image;
         },
         openInNewTab(url) {
-            window.open(url, '_blank', 'noreferrer');
+            window.open(url, '_blank', 'noopener noreferrer');
         },
     },
     emits: ['selectGame', 'deleteGame'],
