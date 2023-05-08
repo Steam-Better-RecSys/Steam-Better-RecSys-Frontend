@@ -7,6 +7,8 @@
                     class="form-control"
                     placeholder="Search by title..."
                     aria-label="Title"
+                    v-model="searchString"
+                    @change="sortAndFilter"
                 />
             </div>
         </div>
@@ -172,6 +174,7 @@ export default {
             selectedSort: new Map(),
             selectedTags: new Map(),
             selectedOptions: [],
+            searchString: null
         };
     },
     methods: {
@@ -223,6 +226,7 @@ export default {
             await this.getFilteredGamesStore(
                 this.selectedSort,
                 this.selectedTags,
+                this.searchString,
                 0
             );
         },
