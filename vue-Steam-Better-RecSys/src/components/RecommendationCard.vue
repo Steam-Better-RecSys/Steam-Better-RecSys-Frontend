@@ -1,6 +1,6 @@
 <template>
     <div class="card p-3 mx-3">
-        <img class="card-img-top" :src="image" :alt="name" />
+        <img class="card-img-top" :src="getImage" :alt="name" />
         <div class="card-body pb-0">
             <h1>
                 <b
@@ -17,9 +17,6 @@ export default {
     name: 'RecommendationCard',
     props: {
         name: {
-            type: String,
-        },
-        image: {
             type: String,
         },
         description: {
@@ -41,6 +38,9 @@ export default {
                 this.nameSlug
             );
         },
+        getImage() {
+            return 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + this.gameId + '/header.jpg'
+        }
     },
 };
 </script>

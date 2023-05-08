@@ -14,9 +14,6 @@
                     :description="
                         recommendedGames[currentGameIndex].description
                     "
-                    :image="
-                        recommendedGames[currentGameIndex].horizontalImageUrl
-                    "
                     :nameSlug="recommendedGames[currentGameIndex].nameSlug"
                     :gameId="recommendedGames[currentGameIndex].gameId"
                 />
