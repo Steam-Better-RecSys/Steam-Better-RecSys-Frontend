@@ -77,7 +77,7 @@ export default {
         },
         setImage(image) {
             image.setAttribute('src', this.brokenImage);
-            console.clear()
+            console.clear();
         },
         checkImage(image) {
             this.isBroken = image.src !== this.image;
