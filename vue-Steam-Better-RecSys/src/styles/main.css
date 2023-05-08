@@ -42,6 +42,7 @@
 .btn-primary:focus,
 .btn-primary:active:focus,
 .btn-outline-primary:focus,
+.btn-outline-primary:active:focus,
 .btn-outline-primary:active:focus .btn-check:active ~ .custom-control-label {
     color: white;
     background: var(--dark-theme-color);
