@@ -94,8 +94,8 @@ export default {
 @import '../styles/main.css';
 
 .game-img {
-    height: auto;
-    width: 100%;
+    height: 100%;
+    width: auto;
 }
 
 .broken-img {
@@ -122,8 +122,8 @@ export default {
 
 .container.active {
     transform: scale(1.03);
-    -webkit-box-shadow: 0 0 0 5px var(--dark-theme-color);
-    box-shadow: 0 0 0 5px var(--dark-theme-color);
+    -webkit-box-shadow: 0 0 0 4px var(--dark-theme-color);
+    box-shadow: 0 0 0 4px var(--dark-theme-color);
 }
 
 .text-blend {
