@@ -8,7 +8,7 @@
         <img
             class="game-img"
             :class="{ 'broken-img': isBroken }"
-            :src="image"
+            :src="getVerticalImage"
             :alt="title"
             :id="id"
             @error="setImage($event.currentTarget)"
@@ -50,9 +50,6 @@ export default {
         title: {
             type: String,
         },
-        image: {
-            type: String,
-        },
         id: {
             type: Number,
         },
@@ -65,9 +62,14 @@ export default {
         isActive: {
             type: Boolean,
         },
-        brokenImage: {
-            type: String,
+    },
+    computed: {
+        getVerticalImage() {
+            return 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + this.gameId + '/library_600x900.jpg'
         },
+        getHorizontalImage() {
+            return 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + this.gameId + '/header.jpg'
+        }
     },
     methods: {
         setActive(id) {
@@ -76,11 +78,11 @@ export default {
                 : this.$emit('deleteGame', id);
         },
         setImage(image) {
-            image.setAttribute('src', this.brokenImage);
+            image.setAttribute('src', this.getHorizontalImage);
             console.clear();
         },
         checkImage(image) {
-            this.isBroken = image.src !== this.image;
+            this.isBroken = image.src !== this.getVerticalImage;
         },
         openInNewTab(url) {
             window.open(url, '_blank', 'noopener noreferrer');

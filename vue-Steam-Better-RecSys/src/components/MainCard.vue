@@ -7,8 +7,6 @@
             >
                 <GameCard
                     :title="game.title"
-                    :image="game.verticalImageUrl"
-                    :brokenImage="game.horizontalImageUrl"
                     :id="game.id"
                     :game-id="game.gameId"
                     :name-slug="game.nameSlug"
