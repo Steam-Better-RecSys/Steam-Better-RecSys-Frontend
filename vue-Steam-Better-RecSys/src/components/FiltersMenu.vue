@@ -1,17 +1,22 @@
 <template>
     <div class="px-4 py-2">
+        <div class="d-flex flex-row">
+            <div class="input-group mb-2">
+                <input type="text" class="form-control" placeholder="Search by title..." aria-label="Title">
+            </div>
+        </div>
         <div class="d-flex flex-row flex-wrap-reverse flex-md-nowrap">
-            <div class="d-flex flex-column col-12 col-sm-12 col-md-2">
-                <p class="d-none d-sm-none d-md-block mb-1"><b>Sorting</b></p>
-                <div class="mb-2">
+            <div class="d-flex flex-column col-12 col-sm-12 col-md-2 mb-1">
+                <p class="d-none d-sm-none d-md-block mb-0"><b>Sorting</b></p>
+                <div class="mb-2 mt-1">
                     <div
-                        class="btn-group d-flex flex-column"
+                        class="btn-group btn-custom-vertical-group d-flex flex-column"
                         role="group"
                         v-for="option in sortOptions"
                     >
                         <input
                             type="radio"
-                            class="btn-check btn-primary"
+                            class="btn-check"
                             name="btnRadioSort"
                             :checked="option.selected"
                             autocomplete="off"
@@ -19,7 +24,7 @@
                             @change="selectSort(option.sortId)"
                         />
                         <label
-                            class="btn btn-outline-primary custom-control-label border-0"
+                            class="btn btn-outline-primary custom-control-label"
                             :for="option.sortId"
                             >{{ option.name }}</label
                         >
@@ -49,9 +54,9 @@
                     <!--                    </div>-->
                 </div>
             </div>
-            <div class="d-flex flex-column col-12 col-sm-12 col-md-10 mx-2">
-                <p class="d-none d-sm-none d-md-block mb-1"><b>Filtering</b></p>
-                <div>
+            <div class="d-flex flex-column col-12 col-sm-12 col-md-10 mx-2 mb-1">
+                <p class="d-none d-sm-none d-md-block mb-0"><b>Filtering</b></p>
+                <div class="mt-1">
                     <ul class="nav nav-tabs">
                         <li class="nav-item" v-for="tagClass in tagClasses">
                             <a
@@ -79,8 +84,8 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex flex-row mt-3">
-            <div class="d-flex flex-column col-6 col-sm-6 col-md-2">
+        <div class="d-flex flex-row mt-1">
+            <div class="d-flex flex-column col-6 col-sm-6 col-md-2 pe-1 pe-sm-1 pe-md-0">
                 <button
                     type="button"
                     class="btn btn-primary"
@@ -102,7 +107,7 @@
                     </div>
                 </div>
             </div>
-            <div class="d-flex flex-column col-6 col-sm-6 col-md-2">
+            <div class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0">
                 <button
                     type="button"
                     class="btn btn-primary"
