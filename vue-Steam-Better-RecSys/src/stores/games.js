@@ -12,11 +12,13 @@ const useGamesStore = defineStore('gameSystems', {
         async getFilteredGamesStore(
             sort = new Map(),
             tags = new Map(),
+            searchString,
             offset
         ) {
             const response = await gamesAPI.getFilteredGames(
                 sort,
                 tags,
+                searchString,
                 offset
             );
             this.games = response.data[0];
