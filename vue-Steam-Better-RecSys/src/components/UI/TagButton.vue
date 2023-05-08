@@ -17,7 +17,7 @@
         <button
             class="btn btn-light btn-sm rounded-pill m-0"
             :id="tag.id"
-            @click="
+            @mousedown="
                 [
                     !isSelected
                         ? this.$emit('selectionEvent', tag.id)
@@ -69,7 +69,6 @@ export default {
 .btn-light:focus {
     box-shadow: none;
 }
-
 .btn-light:active:focus {
     color: var(--contast-text-color);
     background: var(--dark-theme-color);
