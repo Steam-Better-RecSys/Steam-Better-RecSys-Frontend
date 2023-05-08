@@ -4,7 +4,7 @@
         <div class="card-body pb-0">
             <h1>
                 <b
-                    ><a :href="getSteamLink"> {{ name }} </a></b
+                    ><a :href="getSteamLink" target="_blank" rel="noopener noreferrer"> {{ name }} </a></b
                 >
             </h1>
             <p v-html="description"></p>
