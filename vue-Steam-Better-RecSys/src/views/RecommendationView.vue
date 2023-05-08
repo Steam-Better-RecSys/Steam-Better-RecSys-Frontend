@@ -45,6 +45,7 @@
                         type="button"
                         class="btn btn-light flex-grow-1"
                         @click="this.getNextRecommendedGame()"
+                        @focus="this.setBlur($event)"
                         v-if="currentGameIndex < 9"
                     >
                         <font-awesome-icon icon="fas fa-forward" />
@@ -128,6 +129,9 @@ export default {
                 -1
             );
         },
+        async setBlur(event) {
+            event.target.blur()
+        }
     },
     beforeMount() {
         this.getRecommendedGame(0, 0);
