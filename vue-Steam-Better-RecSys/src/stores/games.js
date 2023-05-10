@@ -1,12 +1,11 @@
-import { defineStore } from 'pinia';
-import { gamesAPI, recommendationsAPI } from '@/api';
+import {defineStore} from 'pinia';
+import {gamesAPI, recommendationsAPI} from '@/api';
 
 const useGamesStore = defineStore('gameSystems', {
     state: () => ({
         games: [],
         selectedGames: [],
         currentRecommendedGames: [],
-        pages: [],
     }),
     actions: {
         async getFilteredGamesStore(
@@ -21,16 +20,8 @@ const useGamesStore = defineStore('gameSystems', {
                 searchString,
                 offset
             );
-            this.games = response.data[0];
-            if (Math.ceil(response.data[1] / 50) < 10) {
-                this.pages.push(Math.ceil(response.data[1] / 50));
-            } else {
-                let arr = [];
-                for (let i = 1; i < 11; i++) {
-                    arr.push(i);
-                }
-                this.pages = arr;
-            }
+            let proxy = response.data[0];
+            this.games.push(proxy)
         },
 
         async getRecommendedGames(gameId, gameStatus) {
