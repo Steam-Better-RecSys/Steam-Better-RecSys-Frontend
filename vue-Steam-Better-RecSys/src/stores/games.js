@@ -4,17 +4,33 @@ import { gamesAPI, recommendationsAPI } from '@/api';
 const useGamesStore = defineStore('gameSystems', {
     state: () => ({
         games: [],
+        selectedGames: [],
         currentRecommendedGames: [],
+        pages: [],
     }),
     actions: {
-        async getAllGamesStore() {
-            const response = await gamesAPI.getAllGames();
+        async getFilteredGamesStore(
+            sort = new Map(),
+            tags = new Map(),
+            searchString,
+            offset
+        ) {
+            const response = await gamesAPI.getFilteredGames(
+                sort,
+                tags,
+                searchString,
+                offset
+            );
             this.games = response.data[0];
-        },
-
-        async getFilteredGamesStore(sort, tags) {
-            const response = await gamesAPI.getFilteredGames(sort, tags);
-            this.games = response.data[0];
+            if (Math.ceil(response.data[1] / 50) < 10) {
+                this.pages.push(Math.ceil(response.data[1] / 50));
+            } else {
+                let arr = [];
+                for (let i = 1; i < 11; i++) {
+                    arr.push(i);
+                }
+                this.pages = arr;
+            }
         },
 
         async getRecommendedGames(gameId, gameStatus) {
@@ -27,11 +43,13 @@ const useGamesStore = defineStore('gameSystems', {
             return this.currentRecommendedGame;
         },
 
+        setSelectedState(games) {
+            this.selectedGames = games;
+        },
+
         async setSelectedGames(ids) {
-            const response =
-                await recommendationsAPI.setSelectedGamesForRecommendations(
-                    ids
-                );
+            await recommendationsAPI.setSelectedGamesForRecommendations(ids);
+            this.selectedGames = [];
         },
     },
 });
