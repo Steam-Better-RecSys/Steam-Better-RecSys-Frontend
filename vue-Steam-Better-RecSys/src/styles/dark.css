@@ -1,5 +1,6 @@
 :root {
     --bg-color: #121212;
+    --bg-color-rgb: 255, 255, 255;
     --additional-bg-color: #232d39;
 
     --main-text-color: #fff;

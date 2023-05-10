@@ -15,6 +15,7 @@ import {
     faHeart,
     faForward,
     faMagnifyingGlass,
+    faCookieBite,
     faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -32,6 +33,7 @@ library.add(
     faForward,
     faWandMagicSparkles,
     faMagnifyingGlass,
+    faCookieBite
     faUpRightFromSquare
 );
 

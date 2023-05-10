@@ -260,14 +260,6 @@ export default {
 <style scoped>
 @import '../styles/main.css';
 
-a {
-    color: var(--main-theme-color);
-}
-
-a:hover {
-    color: var(--light-theme-color);
-}
-
 .nav-tabs .nav-link {
     cursor: pointer;
 }

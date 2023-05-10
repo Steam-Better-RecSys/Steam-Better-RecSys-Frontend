@@ -84,6 +84,29 @@ p {
     color: var(--main-text-color);
 }
 
+a {
+    color: var(--main-theme-color);
+}
+
+a:hover {
+    color: var(--light-theme-color);
+}
+
+.toast {
+    box-shadow: 0 0.5rem 1rem rgba(var(--bg-color-rgb), 0.15);
+}
+
+.toast-header {
+    color: var(--main-theme-color);
+    background-color: var(--bg-color);
+    opacity: 100%;
+}
+
+.toast-body {
+    color: var(--main-text-color);
+    background-color: var(--bg-color);
+    opacity: 100%;
+
 .disable-events {
     pointer-events: none;
 }
