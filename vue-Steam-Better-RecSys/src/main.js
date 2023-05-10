@@ -33,8 +33,8 @@ library.add(
     faForward,
     faWandMagicSparkles,
     faMagnifyingGlass,
-    faCookieBite
-    faUpRightFromSquare
+    faCookieBite,
+    faUpRightFromSquare,
 );
 
 app.use(store);
