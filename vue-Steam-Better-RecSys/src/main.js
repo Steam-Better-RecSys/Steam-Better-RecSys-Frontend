@@ -15,7 +15,7 @@ import {
     faHeart,
     faForward,
     faMagnifyingGlass,
-    faCookieBite
+    faCookieBite,
 } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -1,0 +1,45 @@
+<template>
+    <div
+        class="toast position-fixed bottom-0 end-0 m-2 show"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+    >
+        <div class="toast-header">
+            <font-awesome-icon icon="fas fa-cookie-bite" />
+            <strong class="ms-2 me-auto">Cookies</strong>
+        </div>
+        <div class="toast-body rounded-bottom">
+            We baked some cookies that you have to accept if you want to make
+            the service work correctly. It does not work without them.
+            <a href="#" @mousedown="openCookiesPolicy">Learn More</a>
+            <div class="mt-2">
+                <button
+                    type="button"
+                    class="btn btn-light btn-sm"
+                    data-bs-dismiss="toast"
+                >
+                    Accept
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+import router from '../router';
+
+export default {
+    name: 'CookieMessage',
+    methods: {
+        openCookiesPolicy() {
+            console.log("?")
+            router.push({ path: '/cookies', replace: true });
+        }
+    }
+};
+</script>
+
+<style scoped>
+@import '../styles/main.css';
+</style>
