@@ -4,8 +4,7 @@
     background: var(--bg-color);
 }
 
-.btn-primary,
-.btn-check:checked ~ .custom-control-label {
+.btn-primary {
     color: var(--contast-text-color);
     background: var(--main-theme-color);
     border-color: var(--main-theme-color);
@@ -14,6 +13,21 @@
 .btn-outline-primary {
     color: var(--main-theme-color);
     background-color: var(--bg-color);
+    border-color: var(--main-theme-color);
+}
+
+.btn-outline-primary,
+.btn-check:checked ~ .custom-control-label {
+    color: var(--main-theme-color);
+    background-color: var(--bg-color);
+    border-color: var(--main-theme-color);
+}
+
+.btn-check ~ .custom-control-label {
+    border-color: var(--additional-bg-color);
+}
+
+.btn-check:checked ~ .custom-control-label {
     border-color: var(--main-theme-color);
 }
 
@@ -28,17 +42,12 @@
 .btn-primary:focus,
 .btn-primary:active:focus,
 .btn-outline-primary:focus,
-.btn-outline-primary:active:focus {
+.btn-outline-primary:active:focus,
+.btn-outline-primary:active:focus .btn-check:active ~ .custom-control-label {
     color: white;
     background: var(--dark-theme-color);
     box-shadow: 0 0 0 0.2rem var(--light-theme-color);
     border-color: var(--dark-theme-color);
-}
-
-.btn-check:active ~ .custom-control-label,
-.btn-check:focus ~ .custom-control-label {
-    background: var(--main-theme-color);
-    border-color: var(--main-theme-color);
 }
 
 .btn-light {
@@ -79,6 +88,10 @@ a {
     color: var(--main-theme-color);
 }
 
+a:hover {
+    color: var(--light-theme-color);
+}
+
 .toast {
     box-shadow: 0 0.5rem 1rem rgba(var(--bg-color-rgb), 0.15);
 }
@@ -93,4 +106,43 @@ a {
     color: var(--main-text-color);
     background-color: var(--bg-color);
     opacity: 100%;
+
+.disable-events {
+    pointer-events: none;
+}
+
+.btn-custom-vertical-group:first-child label {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.btn-custom-vertical-group:last-child label {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.btn-custom-vertical-group:not(:first-child):not(:last-child) label {
+    border-radius: 0;
+}
+
+input {
+    background-color: var(--bg-color);
+    border-width: 1px;
+    border-color: var(--additional-bg-color);
+    color: var(--main-theme-color);
+}
+
+input::placeholder {
+    color: var(--main-text-color);
+}
+
+input:focus {
+    background-color: var(--bg-color);
+    color: var(--main-theme-color);
+    border-color: var(--main-theme-color);
+    box-shadow: none;
+}
+
+hr {
+    color: var(--main-text-color);
 }

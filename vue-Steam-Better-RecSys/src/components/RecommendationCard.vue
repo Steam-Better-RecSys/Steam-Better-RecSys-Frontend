@@ -1,9 +1,11 @@
 <template>
-    <div class="card p-3">
-        <img class="card-img-top" :src="image" :alt="name" />
+    <div class="card p-3 mx-3">
+        <img class="card-img-top" :src="getImage" :alt="name" />
         <div class="card-body pb-0">
             <h1>
-                <a :href="getSteamLink"> {{ name }} </a>
+                <b
+                    ><a :href="getSteamLink" target="_blank" rel="noopener noreferrer"> {{ name }} </a></b
+                >
             </h1>
             <p v-html="description"></p>
         </div>
@@ -15,9 +17,6 @@ export default {
     name: 'RecommendationCard',
     props: {
         name: {
-            type: String,
-        },
-        image: {
             type: String,
         },
         description: {
@@ -39,6 +38,9 @@ export default {
                 this.nameSlug
             );
         },
+        getImage() {
+            return 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + this.gameId + '/header.jpg'
+        }
     },
 };
 </script>
@@ -49,7 +51,6 @@ export default {
     border: 5px solid var(--additional-bg-color);
     border-radius: 30px;
     color: var(--main-text-color);
-    width: 40rem;
 }
 
 img {

@@ -13,9 +13,9 @@ class TagsAPI {
     getTagById = async (id) => {
         return this.API({
             method: 'GET',
-            url: `/tags/${id}`
-        })
-    }
+            url: `/tags/${id}`,
+        });
+    };
 }
 
 export default TagsAPI;
