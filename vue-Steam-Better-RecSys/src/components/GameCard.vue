@@ -102,30 +102,34 @@ export default {
 
 .broken-img {
     width: auto;
-    filter: blur(10px);
-    -webkit-filter: blur(10px);
+    filter: blur(9px);
+    -webkit-filter: blur(9px);
 }
 
 .container {
-    transition: 0.4s;
     position: relative;
     text-align: center;
     color: var(--main-text-color);
     max-height: 200px;
     max-width: 133px;
     overflow: hidden;
+    transform: scale(1);
+    -webkit-transform: scale(1);
+    transition: 0.3s;
 }
 
 .container:hover {
-    transform: scale(1.05);
-    transition: 0.3s;
+    box-shadow: 0 0 0 4px var(--main-theme-color);
+    -webkit-box-shadow: 0 0 0 4px var(--additional-bg-color);
     cursor: pointer;
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    transition: 0.3s;
 }
 
 .container.active {
-    transform: scale(1.03);
-    -webkit-box-shadow: 0 0 0 4px var(--dark-theme-color);
-    box-shadow: 0 0 0 4px var(--dark-theme-color);
+    box-shadow: 0 0 0 4px var(--main-theme-color);
+    -webkit-box-shadow: 0 0 0 4px var(--main-theme-color);
 }
 
 .text-blend {
@@ -138,6 +142,7 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 
 .right-top {
@@ -145,5 +150,6 @@ export default {
     top: 10%;
     left: 85%;
     transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
 }
 </style>
