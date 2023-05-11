@@ -21,7 +21,10 @@ const useGamesStore = defineStore('gameSystems', {
                 offset
             );
             let proxy = response.data[0];
-            this.games.push(proxy)
+            if (offset === 0) {
+                this.games = []
+            }
+            this.games.push(...proxy)
         },
 
         async getRecommendedGames(gameId, gameStatus) {

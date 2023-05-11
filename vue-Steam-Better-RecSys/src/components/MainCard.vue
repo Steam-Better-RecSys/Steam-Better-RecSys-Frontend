@@ -18,7 +18,7 @@
         </div>
         <div
                 class="d-flex flex-row flex-fill justify-content-center align-items-center mx-3 mb-3"
-                v-if="games.length !== 0 && games.length === 50"
+                v-if="games.length !== 0 && games.length >= 50"
         >
             <button role="button" class="btn btn-outline-primary flex-grow-1" @click="handleOffset()">
                 <font-awesome-icon icon="fas fa-magnifying-glass"/>
