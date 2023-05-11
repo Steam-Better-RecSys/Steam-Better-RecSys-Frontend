@@ -19,6 +19,11 @@ const router = createRouter({
             name: 'Steam Wizzard — Cookie Policy',
             component: () => import('../views/CookiesView.vue'),
         },
+        {
+            path: '/about',
+            name: 'Steam Wizzard — About',
+            component: () => import('../views/AboutView.vue'),
+        },
     ],
 });
 
