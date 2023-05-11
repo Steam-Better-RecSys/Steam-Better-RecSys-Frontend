@@ -12,7 +12,7 @@
         <div class="toast-body rounded-bottom">
             We baked some cookies that you have to accept if you want to make
             the service work correctly. It does not work without them.
-            <a href="#" @mousedown="openCookiesPolicy">Learn More</a>
+            <a href="/cookies">Learn More</a>
             <div class="mt-2">
                 <button
                     type="button"
@@ -27,16 +27,8 @@
 </template>
 
 <script>
-import router from '../router';
-
 export default {
     name: 'CookieMessage',
-    methods: {
-        openCookiesPolicy() {
-            console.log("?")
-            router.push({ path: '/cookies', replace: true });
-        }
-    }
 };
 </script>
 

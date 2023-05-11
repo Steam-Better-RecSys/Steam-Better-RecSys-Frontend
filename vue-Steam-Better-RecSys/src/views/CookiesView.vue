@@ -35,7 +35,7 @@
             </p>
             <p>
                 If you have questions about this policy, you may reach us at
-                evlko.oklve [dot] gmail [at] com
+                evlko.oklve [at] gmail [dot] com
             </p>
         </div>
     </div>
