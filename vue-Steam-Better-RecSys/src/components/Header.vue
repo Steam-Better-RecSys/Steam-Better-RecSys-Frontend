@@ -25,6 +25,9 @@ export default {
 header {
     background-color: var(--additional-bg-color);
     font-family: 'Beautiful Magic', sans-serif;
+}
+
+h1 {
     color: var(--main-theme-color);
 }
 
