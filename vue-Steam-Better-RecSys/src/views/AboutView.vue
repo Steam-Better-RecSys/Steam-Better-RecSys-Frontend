@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <div class="d-flex justify-content-center my-2">
+    <div class="d-flex justify-content-center my-2 mx-4">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
             <h1>About SteamWizzard</h1>
             <h2>Idea</h2>
@@ -18,7 +18,7 @@
             </ol>
             <h2>Team</h2>
             <p>Lev Kobelev (tw: <a href="https://twitter.com/evllko" target="_blank" rel="noopener noreferrer">@evllko</a>) — author & main wizard.</p>
-            <p>Special Thanks for Anton Konev (gh: <a href="https://github.com/VenomouSTaCo" target="_blank" rel="noopener noreferrer">@VenomouSTaCo</a>) & Vladimir Ivanov (gh: <a href="https://github.com/IVladimirA" target="_blank" rel="noopener noreferrer">@IVladimirA</a>) for helping with the project at the beginning.</p>
+            <p>Special Thanks to Anton Konev (gh: <a href="https://github.com/VenomouSTaCo" target="_blank" rel="noopener noreferrer">@VenomouSTaCo</a>) & Vladimir Ivanov (gh: <a href="https://github.com/IVladimirA" target="_blank" rel="noopener noreferrer">@IVladimirA</a>) for helping with the project at the beginning.</p>
             <h2>Licenses</h2>
             <p>
                 We use...

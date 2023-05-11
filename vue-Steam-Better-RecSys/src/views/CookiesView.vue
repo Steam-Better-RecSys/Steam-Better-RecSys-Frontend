@@ -1,6 +1,6 @@
 <template>
     <Header />
-    <div class="d-flex justify-content-center my-2">
+    <div class="d-flex justify-content-center my-2 mx-4">
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
             <h1>Cookie Policy</h1>
             <h2>What is a cookie?</h2>
