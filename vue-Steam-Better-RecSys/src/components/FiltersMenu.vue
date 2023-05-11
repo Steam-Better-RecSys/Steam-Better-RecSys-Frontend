@@ -120,11 +120,15 @@
             </div>
             <div
                 class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0"
+                tabindex="0"
+                data-bs-toggle="tooltip"
+                title="Firstly, select games to get recommendations"
+                @mouseenter="updateTooltipTitle($event.currentTarget)"
             >
                 <button
                     type="button"
                     class="btn btn-primary"
-                    v-if="selectedGames.length > 0"
+                    :class="{ disabled: selectedGames.length === 0 }"
                     @click="doMagic()"
                 >
                     <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
@@ -143,6 +147,7 @@ import useGamesStore from '@/stores/games';
 import TagButton from '@/components/UI/TagButton.vue';
 import ChosenTag from '@/components/UI/ChosenTag.vue';
 import OrderButton from '@/components/UI/OrderButton.vue';
+import { Tooltip } from 'bootstrap';
 
 export default {
     components: {
@@ -174,7 +179,7 @@ export default {
             selectedSort: new Map(),
             selectedTags: new Map(),
             selectedOptions: [],
-            searchString: null
+            searchString: null,
         };
     },
     methods: {
@@ -242,6 +247,20 @@ export default {
                 this.$router.push('/recommendation')
             );
         },
+
+        updateTooltipTitle(el) {
+            if (this.selectedGames.length === 0) {
+                el.setAttribute(
+                    'data-bs-original-title',
+                    'Firstly, choose games'
+                );
+            } else {
+                el.setAttribute(
+                    'data-bs-original-title',
+                    'Get recommendations based on your choices'
+                );
+            }
+        },
     },
     computed: {
         ...mapState(useTagsStore, ['tags']),
@@ -250,6 +269,9 @@ export default {
     mounted() {
         this.preset();
         this.renderTags().then(() => this.selectClass(1));
+        new Tooltip(document.body, {
+            selector: "[data-bs-toggle='tooltip']",
+        });
     },
     beforeMount() {
         localStorage.removeItem('pinia_tags');
