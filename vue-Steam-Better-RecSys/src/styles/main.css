@@ -80,7 +80,7 @@
     border-bottom: var(--bg-color);
 }
 
-p {
+p, h1, h2 {
     color: var(--main-text-color);
 }
 
