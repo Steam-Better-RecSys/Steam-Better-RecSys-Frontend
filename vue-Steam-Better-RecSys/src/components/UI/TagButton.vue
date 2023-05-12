@@ -25,7 +25,7 @@
                 ]
             "
         >
-            {{ tag.name }}
+            <span class="small">{{ tag.name }}</span>
         </button>
     </div>
 </template>
