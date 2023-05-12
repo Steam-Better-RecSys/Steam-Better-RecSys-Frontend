@@ -98,7 +98,7 @@
                         Search
                     </button>
                     <div>
-                        <order-button @order-change="selectOrder"/>
+                        <order-button @order-change="selectOrder" @click="sortAndFilter"/>
                     </div>
                 </div>
             </div>
@@ -249,7 +249,6 @@ export default {
 
         clearSelectedGames() {
             this.setSelectedState([])
-            window.location.reload()
         },
 
         async doMagic() {
@@ -276,7 +275,7 @@ export default {
         ...mapState(useTagsStore, ['tags']),
         ...mapState(useGamesStore, ['selectedGames']),
     },
-    mounted() {
+    beforeMount() {
         this.preset();
         this.renderTags().then(() => this.selectClass(1));
         new Tooltip(document.body, {
