@@ -110,6 +110,7 @@ a:hover {
 .toast-header {
     color: var(--main-theme-color);
     background-color: var(--bg-color);
+    border-color: var(--additional-bg-color);
     opacity: 100%;
 }
 
