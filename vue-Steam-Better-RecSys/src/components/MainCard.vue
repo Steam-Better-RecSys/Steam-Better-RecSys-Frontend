@@ -10,7 +10,7 @@
                         :id="game.id"
                         :game-id="game.gameId"
                         :name-slug="game.nameSlug"
-                        :isActive="currentSelectedGames.has(game.gameId)"
+                        :isActive="this.selectedGames.includes(game.gameId)"
                         @select-game="handleSelect"
                         @delete-game="handleDelete"
                 />
@@ -44,11 +44,6 @@ import useTagsStore from "@/stores/tags";
 
 export default {
     name: 'mainCard',
-    data() {
-        return {
-            currentSelectedGames: new Set(),
-        };
-    },
     components: {
         GameCard,
         Pagination,
@@ -64,19 +59,19 @@ export default {
             await this.getFilteredGamesStore(new Map(), this.getMapByArray(), null, null, 0);
         },
         handleSelect(id) {
-            this.currentSelectedGames.add(id);
-            this.setSelectedState(Array.from(this.currentSelectedGames));
+            this.selectedGames.push(id);
         },
         handleDelete(id) {
-            this.currentSelectedGames.delete(id);
-            this.setSelectedState(Array.from(this.currentSelectedGames));
+            const index = this.selectedGames.indexOf(id);
+            if (index > -1) {
+                this.selectedGames.splice(index, 1);
+            }
         },
     },
     computed: {
         ...mapState(useGamesStore, ['games', 'offset', 'limit', "selectedGames"]),
     },
     mounted() {
-        this.currentSelectedGames = new Set(this.selectedGames);
         this.render();
     },
 };
