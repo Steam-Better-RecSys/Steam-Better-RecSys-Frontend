@@ -10,7 +10,7 @@
                         :id="game.id"
                         :game-id="game.gameId"
                         :name-slug="game.nameSlug"
-                        :isActive="selectedGames.has(game.gameId)"
+                        :isActive="currentSelectedGames.has(game.gameId)"
                         @select-game="handleSelect"
                         @delete-game="handleDelete"
                 />
@@ -40,12 +40,13 @@ import {mapActions, mapState} from 'pinia';
 import useGamesStore from '@/stores/games';
 import Pagination from '@/components/UI/Pagination.vue';
 import GameCard from '@/components/GameCard.vue';
+import useTagsStore from "@/stores/tags";
 
 export default {
     name: 'mainCard',
     data() {
         return {
-            selectedGames: new Set(),
+            currentSelectedGames: new Set(),
         };
     },
     components: {
@@ -58,22 +59,24 @@ export default {
             'setSelectedState',
             'getNextFilteredGames',
         ]),
+        ...mapActions(useTagsStore, ['getMapByArray']),
         async render() {
-            await this.getFilteredGamesStore(new Map(), new Map(), null, null, 0);
+            await this.getFilteredGamesStore(new Map(), this.getMapByArray(), null, null, 0);
         },
         handleSelect(id) {
-            this.selectedGames.add(id);
-            this.setSelectedState(Array.from(this.selectedGames));
+            this.currentSelectedGames.add(id);
+            this.setSelectedState(Array.from(this.currentSelectedGames));
         },
         handleDelete(id) {
-            this.selectedGames.delete(id);
-            this.setSelectedState(Array.from(this.selectedGames));
+            this.currentSelectedGames.delete(id);
+            this.setSelectedState(Array.from(this.currentSelectedGames));
         },
     },
     computed: {
-        ...mapState(useGamesStore, ['games', 'offset', 'limit']),
+        ...mapState(useGamesStore, ['games', 'offset', 'limit', "selectedGames"]),
     },
     mounted() {
+        this.currentSelectedGames = new Set(this.selectedGames);
         this.render();
     },
 };

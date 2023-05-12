@@ -4,24 +4,24 @@
             <div class="col-12 col-sm-12 col-md-6 mb-2">
                 <div class="input-group">
                     <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Search by title..."
-                        aria-label="Search"
-                        v-model="searchString"
-                        @change="sortAndFilter"
+                            type="text"
+                            class="form-control"
+                            placeholder="Search by title..."
+                            aria-label="Search"
+                            v-model="searchString"
+                            @change="sortAndFilter"
                     />
                 </div>
             </div>
-            <div  class="col-12 col-sm-12 col-md-6 mb-2">
+            <div class="col-12 col-sm-12 col-md-6 mb-2">
                 <div class="input-group">
                     <input
-                        type="text"
-                        class="form-control"
-                        placeholder="Get your games by profile link or steamid..."
-                        aria-label="Username"
-                        v-model="usernameString"
-                        @change="sortAndFilter"
+                            type="text"
+                            class="form-control"
+                            placeholder="Get your games by profile link or steamid..."
+                            aria-label="Username"
+                            v-model="usernameString"
+                            @change="sortAndFilter"
                     />
                 </div>
             </div>
@@ -31,41 +31,41 @@
                 <p class="d-none d-sm-none d-md-block mb-0"><b>Sorting</b></p>
                 <div class="mb-2 mt-1">
                     <div
-                        class="btn-group btn-custom-vertical-group d-flex flex-column"
-                        role="group"
-                        v-for="option in sortOptions"
+                            class="btn-group btn-custom-vertical-group d-flex flex-column"
+                            role="group"
+                            v-for="option in sortOptions"
                     >
                         <input
-                            type="radio"
-                            class="btn-check"
-                            name="btnRadioSort"
-                            :checked="option.selected"
-                            autocomplete="off"
-                            :id="option.sortId"
-                            @change="selectSort(option.sortId)"
+                                type="radio"
+                                class="btn-check"
+                                name="btnRadioSort"
+                                :checked="option.selected"
+                                autocomplete="off"
+                                :id="option.sortId"
+                                @change="selectSort(option.sortId)"
                         />
                         <label
-                            class="btn btn-outline-primary custom-control-label"
-                            :for="option.sortId"
-                            >{{ option.name }}</label
+                                class="btn btn-outline-primary custom-control-label"
+                                :for="option.sortId"
+                        >{{ option.name }}</label
                         >
                     </div>
                 </div>
             </div>
             <div
-                class="d-flex flex-column col-12 col-sm-12 col-md-10 mx-2 mb-1"
+                    class="d-flex flex-column col-12 col-sm-12 col-md-10 mx-2 mb-1"
             >
                 <p class="d-none d-sm-none d-md-block mb-0"><b>Filtering</b></p>
                 <div class="mt-1">
                     <ul class="nav nav-tabs">
                         <li class="nav-item" v-for="tagClass in tagClasses">
                             <a
-                                class="nav-link"
-                                :class="{
+                                    class="nav-link"
+                                    :class="{
                                     active: tagClass.id === this.idClass.id,
                                 }"
-                                :id="tagClass.id"
-                                @click="selectClass(tagClass.id)"
+                                    :id="tagClass.id"
+                                    @click="selectClass(tagClass.id)"
                             >
                                 {{ tagClass.name }}
                             </a>
@@ -74,31 +74,31 @@
                 </div>
                 <div class="mt-2 d-flex flex-wrap" v-if="idClass">
                     <tag-button
-                        :tag="tag"
-                        v-for="tag in idClass.tags"
-                        :isSelected="this.selectedTags.has(tag.id)"
-                        :class="{ selected: this.selectedTags.has(tag.id) }"
-                        @selection-event="selectTag"
-                        @deletion-event="deleteTag"
+                            :tag="tag"
+                            v-for="tag in idClass.tags"
+                            :isSelected="this.selectedTags.has(tag.id)"
+                            :class="{ selected: this.selectedTags.has(tag.id) }"
+                            @selection-event="selectTag"
+                            @deletion-event="deleteTag"
                     />
                 </div>
             </div>
         </div>
         <div class="d-flex flex-row mt-1">
             <div
-                class="d-flex flex-column col-6 col-sm-6 col-md-2 pe-1 pe-sm-1 pe-md-0"
+                    class="d-flex flex-column col-6 col-sm-6 col-md-2 pe-1 pe-sm-1 pe-md-0"
             >
                 <div class="d-flex flex-row justify-content-between">
                     <button
-                        type="button"
-                        class="btn btn-primary flex-grow-1 me-1"
-                        @click="sortAndFilter"
+                            type="button"
+                            class="btn btn-primary flex-grow-1 me-1"
+                            @click="sortAndFilter"
                     >
-                        <font-awesome-icon icon="fas fa-magnifying-glass" />
+                        <font-awesome-icon icon="fas fa-magnifying-glass"/>
                         Search
                     </button>
                     <div>
-                        <order-button @order-change="selectOrder" />
+                        <order-button @order-change="selectOrder"/>
                     </div>
                 </div>
             </div>
@@ -106,49 +106,50 @@
                 <div class="d-flex flex-row overflow-auto mx-2">
                     <div class="flex-shrink-0" v-for="tag in tags">
                         <tag-button
-                            :tag="tag"
-                            class="selected"
-                            @selection-event="deleteTag"
-                            @deletion-event="deleteTag"
+                                :tag="tag"
+                                class="selected"
+                                @selection-event="deleteTag"
+                                @deletion-event="deleteTag"
                         />
                     </div>
                 </div>
             </div>
             <div
-                class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0"
+                    class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0"
             >
                 <div class="d-flex flex-row justify-content-between">
                     <button
-                        type="button"
-                        class="btn btn-light"
-                        v-if="this.selectedGames.length > 0"
+                            type="button"
+                            class="btn btn-light"
+                            v-if="this.selectedGames.length > 0"
+                            @click="clearSelectedGames"
                     >
-                        <font-awesome-icon icon="fas fa-trash" />
+                        <font-awesome-icon icon="fas fa-trash"/>
                     </button>
                     <button
-                        type="button"
-                        class="btn btn-primary flex-grow-1 ms-1"
-                        :class="{ disabled: selectedGames.length === 0 }"
-                        @click="doMagic($event.currentTarget)"
+                            type="button"
+                            class="btn btn-primary flex-grow-1 ms-1"
+                            :class="{ disabled: selectedGames.length === 0 }"
+                            @click="doMagic($event.currentTarget)"
                     >
-                        <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
+                        <font-awesome-icon icon="fas fa-wand-magic-sparkles"/>
                         Do Magic
                     </button>
                 </div>
             </div>
         </div>
-        <hr />
+        <hr/>
     </div>
 </template>
 
 <script>
-import { mapActions, mapState } from 'pinia';
+import {mapActions, mapState} from 'pinia';
 import useTagsStore from '@/stores/tags';
 import useGamesStore from '@/stores/games';
 import TagButton from '@/components/UI/TagButton.vue';
 import ChosenTag from '@/components/UI/ChosenTag.vue';
 import OrderButton from '@/components/UI/OrderButton.vue';
-import { Tooltip } from 'bootstrap';
+import {Tooltip} from 'bootstrap';
 
 export default {
     components: {
@@ -188,8 +189,9 @@ export default {
         ...mapActions(useGamesStore, [
             'getFilteredGamesStore',
             'setSelectedGames',
+            'setSelectedState'
         ]),
-        ...mapActions(useTagsStore, ['getAllTagsStore', 'getAllTagsById']),
+        ...mapActions(useTagsStore, ['getAllTagsStore', 'getAllTagsById', "clearTagsState"]),
 
         async renderTags() {
             this.tagClasses = await this.getAllTagsStore();
@@ -242,12 +244,18 @@ export default {
         preset() {
             this.selectedSort.set('sort', 'reviews');
             this.selectedSort.set('order', 'desc');
+            this.selectedTags = new Map(this.tags.map((obj) => [obj.id, 'tag']))
+        },
+
+        clearSelectedGames() {
+            this.setSelectedState([])
+            window.location.reload()
         },
 
         async doMagic() {
-            await this.setSelectedGames(this.selectedGames).then(() =>
-                this.$router.push('/recommendation')
-            );
+            await this.setSelectedGames(this.selectedGames)
+                .then(() => this.$router.push('/recommendation')
+                );
         },
 
         updateTooltipTitle(el) {
