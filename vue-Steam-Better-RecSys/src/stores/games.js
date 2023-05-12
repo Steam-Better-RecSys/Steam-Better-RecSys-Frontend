@@ -8,7 +8,8 @@ const useGamesStore = defineStore('gameSystems', {
         currentRecommendedGames: [],
         sorting: new Map(),
         selectedTags: new Map(),
-        searchingString: null,
+        searchString: null,
+        usernameString: null,
         offset: 0,
         limit: 0
     }),
@@ -17,18 +18,20 @@ const useGamesStore = defineStore('gameSystems', {
             sort = new Map(),
             tags = new Map(),
             searchString,
+            usernameString,
             offset,
-            limit
         ) {
             this.sorting = sort
             this.selectedTags = tags
             this.searchString = searchString
+            this.usernameString = usernameString
             this.offset = offset
 
             const response = await gamesAPI.getFilteredGames(
                 sort,
                 tags,
                 searchString,
+                usernameString,
                 offset
             );
             let proxy = response.data[0];
@@ -41,7 +44,7 @@ const useGamesStore = defineStore('gameSystems', {
 
         async getNextFilteredGames() {
             this.offset += 50
-            await this.getFilteredGamesStore(this.soring, this.selectedTags, this.searchString, this.offset)
+            await this.getFilteredGamesStore(this.sorting, this.selectedTags, this.searchString, this.usernameString, this.offset)
         },
 
         async getRecommendedGames(gameId, gameStatus) {

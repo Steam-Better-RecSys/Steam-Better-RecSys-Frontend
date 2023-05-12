@@ -59,7 +59,7 @@ export default {
             'getNextFilteredGames',
         ]),
         async render() {
-            await this.getFilteredGamesStore(new Map(), new Map(), '', 0);
+            await this.getFilteredGamesStore(new Map(), new Map(), null, null, 0);
         },
         handleSelect(id) {
             this.selectedGames.add(id);

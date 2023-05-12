@@ -1,15 +1,29 @@
 <template>
     <div class="px-4 py-2">
-        <div class="d-flex flex-row">
-            <div class="input-group mb-2">
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search by title..."
-                    aria-label="Title"
-                    v-model="searchString"
-                    @change="sortAndFilter"
-                />
+        <div class="row mb-2">
+            <div class="col-6">
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search by title..."
+                        aria-label="Search"
+                        v-model="searchString"
+                        @change="sortAndFilter"
+                    />
+                </div>
+            </div>
+            <div  class="col-6">
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Get your games by profile link or steamid..."
+                        aria-label="Username"
+                        v-model="usernameString"
+                        @change="sortAndFilter"
+                    />
+                </div>
             </div>
         </div>
         <div class="d-flex flex-row flex-wrap-reverse flex-md-nowrap">
@@ -38,27 +52,7 @@
                     </div>
                 </div>
                 <div>
-                    <div>
-                        <order-button @order-change="selectOrder" />
-                    </div>
-                    <!--                    <div class="btn-group w-50"-->
-                    <!--                            role="group"-->
-                    <!--                            v-for="order in orderOptions">-->
-                    <!--                        <input-->
-                    <!--                                type="radio"-->
-                    <!--                                class="btn-check"-->
-                    <!--                                autocomplete="off"-->
-                    <!--                                :id="order.orderId"-->
-                    <!--                                :checked="order.selected"-->
-                    <!--                                @change="selectOrder(order.orderId)"-->
-                    <!--                                name="btnRadioOrder"-->
-                    <!--                        />-->
-                    <!--                        <label-->
-                    <!--                                class="btn btn-outline-primary custom-control-label"-->
-                    <!--                                :for="order.orderId"-->
-                    <!--                        >{{ order.name }}</label-->
-                    <!--                        >-->
-                    <!--                    </div>-->
+                    <order-button @order-change="selectOrder" />
                 </div>
             </div>
             <div
@@ -180,6 +174,7 @@ export default {
             selectedTags: new Map(),
             selectedOptions: [],
             searchString: null,
+            usernameString: null
         };
     },
     methods: {
@@ -232,6 +227,7 @@ export default {
                 this.selectedSort,
                 this.selectedTags,
                 this.searchString,
+                this.usernameString,
                 0
             );
         },
