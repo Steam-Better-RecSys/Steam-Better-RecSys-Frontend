@@ -2,10 +2,11 @@
     <div>
         <button
             type="button"
-            class="btn btn-light w-100 v-btn-toggle"
+            class="btn btn-light"
             @click="toggle"
         >
-            {{ isActive ? 'Ascending' : 'Descending' }}
+            <font-awesome-icon icon="fas fa-arrow-down-wide-short" v-if="!isActive"/>
+            <font-awesome-icon icon="fas fa-arrow-down-short-wide" v-if="isActive"/>
         </button>
     </div>
 </template>
@@ -15,7 +16,7 @@ export default {
     name: 'OrderButton',
     data() {
         return {
-            isActive: true,
+            isActive: false,
         };
     },
     methods: {
@@ -30,4 +31,6 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@import '../../styles/main.css';
+</style>
