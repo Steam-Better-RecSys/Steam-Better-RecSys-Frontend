@@ -51,9 +51,6 @@
                         >
                     </div>
                 </div>
-                <div>
-                    <order-button @order-change="selectOrder" />
-                </div>
             </div>
             <div
                 class="d-flex flex-column col-12 col-sm-12 col-md-10 mx-2 mb-1"
@@ -91,14 +88,19 @@
             <div
                 class="d-flex flex-column col-6 col-sm-6 col-md-2 pe-1 pe-sm-1 pe-md-0"
             >
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    @click="sortAndFilter"
-                >
-                    <font-awesome-icon icon="fas fa-magnifying-glass" />
-                    Search
-                </button>
+                <div class="d-flex flex-row justify-content-between">
+                    <button
+                        type="button"
+                        class="btn btn-primary flex-grow-1 me-1"
+                        @click="sortAndFilter"
+                    >
+                        <font-awesome-icon icon="fas fa-magnifying-glass" />
+                        Search
+                    </button>
+                    <div>
+                        <order-button @order-change="selectOrder" />
+                    </div>
+                </div>
             </div>
             <div class="d-none d-sm-none d-md-flex flex-column col-8">
                 <div class="d-flex flex-row overflow-auto mx-2">
@@ -114,19 +116,25 @@
             </div>
             <div
                 class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0"
-                tabindex="0"
-                title="Firstly, select games to get recommendations"
-                @mouseenter="updateTooltipTitle($event.currentTarget)"
             >
-                <button
-                    type="button"
-                    class="btn btn-primary"
-                    :class="{ disabled: selectedGames.length === 0 }"
-                    @click="doMagic($event.currentTarget)"
-                >
-                    <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
-                    Do Magic
-                </button>
+                <div class="d-flex flex-row justify-content-between">
+                    <button
+                        type="button"
+                        class="btn btn-light"
+                        v-if="this.selectedGames.length > 0"
+                    >
+                        <font-awesome-icon icon="fas fa-trash" />
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-primary flex-grow-1 ms-1"
+                        :class="{ disabled: selectedGames.length === 0 }"
+                        @click="doMagic($event.currentTarget)"
+                    >
+                        <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
+                        Do Magic
+                    </button>
+                </div>
             </div>
         </div>
         <hr />
