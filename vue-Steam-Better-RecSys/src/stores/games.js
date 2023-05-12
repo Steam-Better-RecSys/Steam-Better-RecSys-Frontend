@@ -43,7 +43,6 @@ const useGamesStore = defineStore('gameSystems', {
 
         async setSelectedGames(ids) {
             await recommendationsAPI.setSelectedGamesForRecommendations(ids);
-            this.selectedGames = [];
         },
     },
 });

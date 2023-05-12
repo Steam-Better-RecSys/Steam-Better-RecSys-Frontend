@@ -10,7 +10,7 @@
                         :id="game.id"
                         :game-id="game.gameId"
                         :name-slug="game.nameSlug"
-                        :isActive="selectedGames.has(game.gameId)"
+                        :isActive="currentSelectedGames.has(game.gameId)"
                         @select-game="handleSelect"
                         @delete-game="handleDelete"
                 />
@@ -46,7 +46,7 @@ export default {
     data() {
         return {
             offset: 0,
-            selectedGames: new Set(),
+            currentSelectedGames: new Set(this.selectedGames)
         };
     },
     components: {
@@ -65,19 +65,20 @@ export default {
             this.offset += 50;
         },
         handleSelect(id) {
-            this.selectedGames.add(id);
-            this.setSelectedState(Array.from(this.selectedGames));
+            this.currentSelectedGames.add(id);
+            this.setSelectedState(Array.from(this.currentSelectedGames));
         },
         handleDelete(id) {
-            this.selectedGames.delete(id);
-            this.setSelectedState(Array.from(this.selectedGames));
+            this.currentSelectedGames.delete(id);
+            this.setSelectedState(Array.from(this.currentSelectedGames));
         },
     },
     computed: {
-        ...mapState(useGamesStore, ['games']),
+        ...mapState(useGamesStore, ['games', 'selectedGames']),
     },
     mounted() {
         this.render();
+
     },
     watch: {
         async offset(offset) {

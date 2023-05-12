@@ -237,7 +237,6 @@ export default {
         },
 
         async doMagic() {
-            console.log(this.selectedGames);
             await this.setSelectedGames(this.selectedGames).then(() =>
                 this.$router.push('/recommendation')
             );
@@ -250,9 +249,6 @@ export default {
     mounted() {
         this.preset();
         this.renderTags().then(() => this.selectClass(1));
-    },
-    beforeMount() {
-        localStorage.removeItem('pinia_tags');
     },
 };
 </script>
