@@ -115,7 +115,7 @@
             <div
                 class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0"
                 tabindex="0"
-                data-bs-toggle="tooltip"
+                :data-bs-toggle="this.selectedGames.length === 0 ? 'tooltip' : false"
                 title="Firstly, select games to get recommendations"
                 @mouseenter="updateTooltipTitle($event.currentTarget)"
             >
@@ -123,7 +123,7 @@
                     type="button"
                     class="btn btn-primary"
                     :class="{ disabled: selectedGames.length === 0 }"
-                    @click="doMagic()"
+                    @click="doMagic($event.currentTarget)"
                 >
                     <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
                     Do Magic
@@ -267,6 +267,7 @@ export default {
         this.renderTags().then(() => this.selectClass(1));
         new Tooltip(document.body, {
             selector: "[data-bs-toggle='tooltip']",
+            trigger: "hover"
         });
     },
     beforeMount() {
