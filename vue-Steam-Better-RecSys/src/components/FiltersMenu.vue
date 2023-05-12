@@ -154,18 +154,18 @@ export default {
             idClass: 0,
             sortOptions: [
                 {
-                    name: 'Name',
-                    sortId: 'title',
+                    name: 'Reviews',
+                    sortId: 'reviews',
                     selected: true,
                 },
                 {
-                    name: 'Release date',
-                    sortId: 'releaseDate',
+                    name: 'Name',
+                    sortId: 'title',
                     selected: false,
                 },
                 {
-                    name: 'User Reviews',
-                    sortId: 'reviews',
+                    name: 'Release Date',
+                    sortId: 'releaseDate',
                     selected: false,
                 },
             ],
@@ -232,8 +232,8 @@ export default {
         },
 
         preset() {
-            this.selectedSort.set('sort', 'title');
-            this.selectedSort.set('order', 'asc');
+            this.selectedSort.set('sort', 'reviews');
+            this.selectedSort.set('order', 'desc');
         },
 
         async doMagic() {

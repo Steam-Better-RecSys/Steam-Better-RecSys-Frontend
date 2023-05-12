@@ -5,7 +5,7 @@
             class="btn btn-light w-100 v-btn-toggle"
             @click="toggle"
         >
-            {{ isActive ? 'ASC' : 'DESC' }}
+            {{ isActive ? 'Ascending' : 'Descending' }}
         </button>
     </div>
 </template>
