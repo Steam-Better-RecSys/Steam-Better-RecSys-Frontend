@@ -65,11 +65,19 @@ export default {
     },
     computed: {
         getVerticalImage() {
-            return 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + this.gameId + '/library_600x900.jpg'
+            return (
+                'https://cdn.cloudflare.steamstatic.com/steam/apps/' +
+                this.gameId +
+                '/library_600x900.jpg'
+            );
         },
         getHorizontalImage() {
-            return 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + this.gameId + '/header.jpg'
-        }
+            return (
+                'https://cdn.cloudflare.steamstatic.com/steam/apps/' +
+                this.gameId +
+                '/header.jpg'
+            );
+        },
     },
     methods: {
         setActive(id) {

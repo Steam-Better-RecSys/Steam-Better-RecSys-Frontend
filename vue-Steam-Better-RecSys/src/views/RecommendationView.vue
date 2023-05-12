@@ -127,8 +127,8 @@ export default {
             );
         },
         async setBlur(event) {
-            event.target.blur()
-        }
+            event.target.blur();
+        },
     },
     beforeMount() {
         this.getRecommendedGame(0, 0);

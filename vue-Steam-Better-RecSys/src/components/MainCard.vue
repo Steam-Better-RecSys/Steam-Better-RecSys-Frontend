@@ -10,7 +10,7 @@
                         :id="game.id"
                         :game-id="game.gameId"
                         :name-slug="game.nameSlug"
-                        :isActive="currentSelectedGames.has(game.gameId)"
+                        :isActive="selectedGames.has(game.gameId)"
                         @select-game="handleSelect"
                         @delete-game="handleDelete"
                 />
@@ -18,9 +18,9 @@
         </div>
         <div
                 class="d-flex flex-row flex-fill justify-content-center align-items-center mx-3 mb-3"
-                v-if="games.length !== 0 && games.length >= 50"
+                v-if="games.length !== 0 && games.length >= 50 && offset < (limit - 50)"
         >
-            <button role="button" class="btn btn-outline-primary flex-grow-1" @click="handleOffset()">
+            <button role="button" class="btn btn-outline-primary flex-grow-1" @click="getNextFilteredGames()">
                 <font-awesome-icon icon="fas fa-magnifying-glass"/>
                 Show More
             </button>
@@ -45,8 +45,7 @@ export default {
     name: 'mainCard',
     data() {
         return {
-            offset: 0,
-            currentSelectedGames: new Set(this.selectedGames)
+            selectedGames: new Set(),
         };
     },
     components: {
@@ -57,33 +56,25 @@ export default {
         ...mapActions(useGamesStore, [
             'getFilteredGamesStore',
             'setSelectedState',
+            'getNextFilteredGames',
         ]),
         async render() {
-            await this.getFilteredGamesStore(new Map(), new Map(), '', this.offset);
-        },
-        handleOffset() {
-            this.offset += 50;
+            await this.getFilteredGamesStore(new Map(), new Map(), null, null, 0);
         },
         handleSelect(id) {
-            this.currentSelectedGames.add(id);
-            this.setSelectedState(Array.from(this.currentSelectedGames));
+            this.selectedGames.add(id);
+            this.setSelectedState(Array.from(this.selectedGames));
         },
         handleDelete(id) {
-            this.currentSelectedGames.delete(id);
-            this.setSelectedState(Array.from(this.currentSelectedGames));
+            this.selectedGames.delete(id);
+            this.setSelectedState(Array.from(this.selectedGames));
         },
     },
     computed: {
-        ...mapState(useGamesStore, ['games', 'selectedGames']),
+        ...mapState(useGamesStore, ['games', 'offset', 'limit']),
     },
     mounted() {
         this.render();
-
-    },
-    watch: {
-        async offset(offset) {
-            await this.getFilteredGamesStore(new Map(), new Map(), '', offset);
-        },
     },
 };
 </script>

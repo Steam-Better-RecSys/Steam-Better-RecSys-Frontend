@@ -50,6 +50,13 @@
     border-color: var(--dark-theme-color);
 }
 
+.btn-primary.disabled {
+    color: white;
+    background: var(--dark-theme-color);
+    border-color: var(--dark-theme-color);
+    opacity: 30%;
+}
+
 .btn-light {
     color: var(--main-theme-color);
     background-color: var(--additional-bg-color);
@@ -80,7 +87,11 @@
     border-bottom: var(--bg-color);
 }
 
-p, h1, h2, h3, li {
+p,
+h1,
+h2,
+h3,
+li {
     color: var(--main-text-color);
 }
 
@@ -105,7 +116,8 @@ a:hover {
 .toast-body {
     color: var(--main-text-color);
     background-color: var(--bg-color);
-    opacity: 100%;}
+    opacity: 100%;
+}
 
 .disable-events {
     pointer-events: none;
@@ -145,4 +157,25 @@ input:focus {
 
 hr {
     color: var(--main-text-color);
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    stroke: currentColor;
+    overflow: visible;
+}
+
+svg {
+    overflow: visible;
+}
+
+div.tooltip-inner {
+    color: var(--main-text-color);
+    --bs-tooltip-bg: var(--additional-bg-color);
+}
+
+div.tooltip-arrow {
+    --bs-tooltip-bg: var(--additional-bg-color);
 }

@@ -4,7 +4,13 @@
         <div class="card-body pb-0">
             <h1>
                 <b
-                    ><a :href="getSteamLink" target="_blank" rel="noopener noreferrer"> {{ name }} </a></b
+                    ><a
+                        :href="getSteamLink"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        {{ name }}
+                    </a></b
                 >
             </h1>
             <p v-html="description"></p>
@@ -39,8 +45,12 @@ export default {
             );
         },
         getImage() {
-            return 'https://cdn.cloudflare.steamstatic.com/steam/apps/' + this.gameId + '/header.jpg'
-        }
+            return (
+                'https://cdn.cloudflare.steamstatic.com/steam/apps/' +
+                this.gameId +
+                '/header.jpg'
+            );
+        },
     },
 };
 </script>

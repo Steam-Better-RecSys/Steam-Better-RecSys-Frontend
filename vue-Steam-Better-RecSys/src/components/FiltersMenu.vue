@@ -1,15 +1,29 @@
 <template>
     <div class="px-4 py-2">
-        <div class="d-flex flex-row">
-            <div class="input-group mb-2">
-                <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Search by title..."
-                    aria-label="Title"
-                    v-model="searchString"
-                    @change="sortAndFilter"
-                />
+        <div class="row mb-2">
+            <div class="col-6">
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Search by title..."
+                        aria-label="Search"
+                        v-model="searchString"
+                        @change="sortAndFilter"
+                    />
+                </div>
+            </div>
+            <div  class="col-6">
+                <div class="input-group">
+                    <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Get your games by profile link or steamid..."
+                        aria-label="Username"
+                        v-model="usernameString"
+                        @change="sortAndFilter"
+                    />
+                </div>
             </div>
         </div>
         <div class="d-flex flex-row flex-wrap-reverse flex-md-nowrap">
@@ -38,27 +52,7 @@
                     </div>
                 </div>
                 <div>
-                    <div>
-                        <order-button @order-change="selectOrder" />
-                    </div>
-                    <!--                    <div class="btn-group w-50"-->
-                    <!--                            role="group"-->
-                    <!--                            v-for="order in orderOptions">-->
-                    <!--                        <input-->
-                    <!--                                type="radio"-->
-                    <!--                                class="btn-check"-->
-                    <!--                                autocomplete="off"-->
-                    <!--                                :id="order.orderId"-->
-                    <!--                                :checked="order.selected"-->
-                    <!--                                @change="selectOrder(order.orderId)"-->
-                    <!--                                name="btnRadioOrder"-->
-                    <!--                        />-->
-                    <!--                        <label-->
-                    <!--                                class="btn btn-outline-primary custom-control-label"-->
-                    <!--                                :for="order.orderId"-->
-                    <!--                        >{{ order.name }}</label-->
-                    <!--                        >-->
-                    <!--                    </div>-->
+                    <order-button @order-change="selectOrder" />
                 </div>
             </div>
             <div
@@ -120,12 +114,15 @@
             </div>
             <div
                 class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0"
+                tabindex="0"
+                title="Firstly, select games to get recommendations"
+                @mouseenter="updateTooltipTitle($event.currentTarget)"
             >
                 <button
                     type="button"
                     class="btn btn-primary"
-                    v-if="selectedGames.length > 0"
-                    @click="doMagic()"
+                    :class="{ disabled: selectedGames.length === 0 }"
+                    @click="doMagic($event.currentTarget)"
                 >
                     <font-awesome-icon icon="fas fa-wand-magic-sparkles" />
                     Do Magic
@@ -143,6 +140,7 @@ import useGamesStore from '@/stores/games';
 import TagButton from '@/components/UI/TagButton.vue';
 import ChosenTag from '@/components/UI/ChosenTag.vue';
 import OrderButton from '@/components/UI/OrderButton.vue';
+import { Tooltip } from 'bootstrap';
 
 export default {
     components: {
@@ -174,7 +172,8 @@ export default {
             selectedSort: new Map(),
             selectedTags: new Map(),
             selectedOptions: [],
-            searchString: null
+            searchString: null,
+            usernameString: null
         };
     },
     methods: {
@@ -227,6 +226,7 @@ export default {
                 this.selectedSort,
                 this.selectedTags,
                 this.searchString,
+                this.usernameString,
                 0
             );
         },
@@ -241,6 +241,20 @@ export default {
                 this.$router.push('/recommendation')
             );
         },
+
+        updateTooltipTitle(el) {
+            if (this.selectedGames.length === 0) {
+                el.setAttribute(
+                    'data-bs-original-title',
+                    'Firstly, choose games'
+                );
+            } else {
+                el.setAttribute(
+                    'data-bs-original-title',
+                    'Get recommendations based on your choices'
+                );
+            }
+        },
     },
     computed: {
         ...mapState(useTagsStore, ['tags']),
@@ -249,6 +263,10 @@ export default {
     mounted() {
         this.preset();
         this.renderTags().then(() => this.selectClass(1));
+        new Tooltip(document.body, {
+            selector: "[data-bs-toggle='tooltip']",
+            trigger: "hover"
+        });
     },
 };
 </script>

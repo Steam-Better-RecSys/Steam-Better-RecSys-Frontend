@@ -34,7 +34,7 @@ library.add(
     faWandMagicSparkles,
     faMagnifyingGlass,
     faCookieBite,
-    faUpRightFromSquare,
+    faUpRightFromSquare
 );
 
 app.use(store);
