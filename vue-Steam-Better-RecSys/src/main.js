@@ -17,6 +17,9 @@ import {
     faMagnifyingGlass,
     faCookieBite,
     faUpRightFromSquare,
+    faArrowDownWideShort,
+    faArrowDownShortWide,
+    faTrash
 } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -34,7 +37,10 @@ library.add(
     faWandMagicSparkles,
     faMagnifyingGlass,
     faCookieBite,
-    faUpRightFromSquare
+    faUpRightFromSquare,
+    faArrowDownWideShort,
+    faArrowDownShortWide,
+    faTrash
 );
 
 app.use(store);
