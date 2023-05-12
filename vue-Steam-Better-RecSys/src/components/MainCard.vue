@@ -18,9 +18,9 @@
         </div>
         <div
                 class="d-flex flex-row flex-fill justify-content-center align-items-center mx-3 mb-3"
-                v-if="games.length !== 0 && games.length >= 50"
+                v-if="games.length !== 0 && games.length >= 50 && offset < (limit - 50)"
         >
-            <button role="button" class="btn btn-outline-primary flex-grow-1" @click="handleOffset()">
+            <button role="button" class="btn btn-outline-primary flex-grow-1" @click="getNextFilteredGames()">
                 <font-awesome-icon icon="fas fa-magnifying-glass"/>
                 Show More
             </button>
@@ -45,7 +45,6 @@ export default {
     name: 'mainCard',
     data() {
         return {
-            offset: 0,
             selectedGames: new Set(),
         };
     },
@@ -57,12 +56,10 @@ export default {
         ...mapActions(useGamesStore, [
             'getFilteredGamesStore',
             'setSelectedState',
+            'getNextFilteredGames',
         ]),
         async render() {
-            await this.getFilteredGamesStore(new Map(), new Map(), '', this.offset);
-        },
-        handleOffset() {
-            this.offset += 50;
+            await this.getFilteredGamesStore(new Map(), new Map(), '', 0);
         },
         handleSelect(id) {
             this.selectedGames.add(id);
@@ -74,15 +71,10 @@ export default {
         },
     },
     computed: {
-        ...mapState(useGamesStore, ['games']),
+        ...mapState(useGamesStore, ['games', 'offset', 'limit']),
     },
     mounted() {
         this.render();
-    },
-    watch: {
-        async offset(offset) {
-            await this.getFilteredGamesStore(new Map(), new Map(), '', offset);
-        },
     },
 };
 </script>
