@@ -115,7 +115,6 @@
             <div
                 class="d-flex flex-column col-6 col-sm-6 col-md-2 ps-1 ps-sm-1 ps-md-0"
                 tabindex="0"
-                :data-bs-toggle="this.selectedGames.length === 0 ? 'tooltip' : false"
                 title="Firstly, select games to get recommendations"
                 @mouseenter="updateTooltipTitle($event.currentTarget)"
             >
