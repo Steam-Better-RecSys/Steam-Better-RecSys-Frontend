@@ -120,21 +120,25 @@
                 <div class="d-flex flex-row justify-content-between">
                     <button
                             type="button"
-                            class="btn btn-light"
+                            class="btn btn-light custom-tooltip"
                             v-if="this.selectedGames.length > 0"
                             @click="clearSelectedGames"
                     >
                         <font-awesome-icon icon="fas fa-trash"/>
+                        <small><span class="tooltiptext text-center rounded py-1">Clear selected games</span></small>
                     </button>
-                    <button
-                            type="button"
-                            class="btn btn-primary flex-grow-1 ms-1"
-                            :class="{ disabled: selectedGames.length === 0 }"
-                            @click="doMagic($event.currentTarget)"
-                    >
-                        <font-awesome-icon icon="fas fa-wand-magic-sparkles"/>
-                        Do Magic
-                    </button>
+                    <div class="d-flex flex-fill custom-tooltip m-0 p-0">
+                        <button
+                                type="button"
+                                class="btn btn-primary flex-grow-1 ms-1"
+                                :class="{ disabled: selectedGames.length === 0 }"
+                                @click="doMagic($event.currentTarget)"
+                        >
+                            <font-awesome-icon icon="fas fa-wand-magic-sparkles"/>
+                            Do Magic
+                        </button>
+                        <small v-if="selectedGames.length === 0"><span class="tooltiptext text-center rounded py-1">Firstly, choose games</span></small>
+                    </div>
                 </div>
             </div>
         </div>
