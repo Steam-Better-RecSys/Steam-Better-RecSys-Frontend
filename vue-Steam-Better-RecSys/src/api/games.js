@@ -3,15 +3,21 @@ class GamesAPI {
         this.API = instance;
     }
 
-    getFilteredGames = async (sort, tags, searchString, usernameString, offset) => {
+    getFilteredGames = async (
+        sort,
+        tags,
+        searchString,
+        usernameString,
+        offset
+    ) => {
         const params = new URLSearchParams();
 
         if (searchString !== null) {
-            params.append('search', searchString)
+            params.append('search', searchString);
         }
 
         if (usernameString !== null) {
-            params.append('username', usernameString)
+            params.append('username', usernameString);
         }
 
         params.append('offset', offset);

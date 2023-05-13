@@ -16,7 +16,9 @@
             @click="setActive(gameId)"
         />
         <div class="centered disable-events" v-show="isBroken">
-            <small><p class="m-0 p-1 text-background">{{ title }}</p></small>
+            <small
+                ><p class="m-0 p-1 text-background">{{ title }}</p></small
+            >
         </div>
         <div class="right-top" v-show="showButton">
             <button

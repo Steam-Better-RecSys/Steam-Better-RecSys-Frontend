@@ -1,5 +1,5 @@
-import {defineStore} from 'pinia';
-import {tagsAPI} from '@/api';
+import { defineStore } from 'pinia';
+import { tagsAPI } from '@/api';
 
 const useTagsStore = defineStore('tags', {
     state: () => ({
@@ -18,18 +18,18 @@ const useTagsStore = defineStore('tags', {
             let response = null;
             for (let [key, _] of map) {
                 response = await tagsAPI.getTagById(key);
-                tags.push({id: response.data.id, name: response.data.name});
+                tags.push({ id: response.data.id, name: response.data.name });
             }
             this.tags = tags;
         },
 
         getMapByArray() {
-            return new Map(this.tags.map((obj) => [obj.id, 'tag']))
+            return new Map(this.tags.map((obj) => [obj.id, 'tag']));
         },
 
         clearTagsState() {
-            this.tags = []
-        }
+            this.tags = [];
+        },
     },
 });
 

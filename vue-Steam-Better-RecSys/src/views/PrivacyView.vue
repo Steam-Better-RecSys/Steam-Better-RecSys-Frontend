@@ -4,7 +4,8 @@
         <div class="col-12 col-sm-12 col-md-10 col-lg-8">
             <h1>Privacy Policy</h1>
             <p>
-                We are not collecting any personal information at the moment, so there's nothing here yet :)
+                We are not collecting any personal information at the moment, so
+                there's nothing here yet :)
             </p>
         </div>
     </div>

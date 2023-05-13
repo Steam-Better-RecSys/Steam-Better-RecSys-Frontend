@@ -1,12 +1,14 @@
 <template>
     <div>
-        <button
-            type="button"
-            class="btn btn-light"
-            @click="toggle"
-        >
-            <font-awesome-icon icon="fas fa-arrow-down-wide-short" v-if="!isActive"/>
-            <font-awesome-icon icon="fas fa-arrow-down-short-wide" v-if="isActive"/>
+        <button type="button" class="btn btn-light" @click="toggle">
+            <font-awesome-icon
+                icon="fas fa-arrow-down-wide-short"
+                v-if="!isActive"
+            />
+            <font-awesome-icon
+                icon="fas fa-arrow-down-short-wide"
+                v-if="isActive"
+            />
         </button>
     </div>
 </template>

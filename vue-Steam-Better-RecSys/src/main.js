@@ -20,7 +20,7 @@ import {
     faArrowDownWideShort,
     faArrowDownShortWide,
     faTrash,
-    faFaceMeh
+    faFaceMeh,
 } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

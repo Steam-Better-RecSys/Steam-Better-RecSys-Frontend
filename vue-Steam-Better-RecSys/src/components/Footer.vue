@@ -13,7 +13,9 @@
                 | gm: evlko.oklve
             </p>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex flex-row my-0">
+        <div
+            class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 d-flex flex-row my-0"
+        >
             <div class="col-4">
                 <p class="text-center">
                     <small

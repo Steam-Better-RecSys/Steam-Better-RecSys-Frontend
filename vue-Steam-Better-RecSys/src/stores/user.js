@@ -1,14 +1,14 @@
-import {defineStore} from "pinia";
+import { defineStore } from 'pinia';
 
-const useUserStore = defineStore("users", {
+const useUserStore = defineStore('users', {
     state: () => ({
-        isAccepted: false
+        isAccepted: false,
     }),
     actions: {
         acceptCookie(bool) {
             this.isAccepted = bool;
-        }
-    }
-})
+        },
+    },
+});
 
 export default useUserStore;

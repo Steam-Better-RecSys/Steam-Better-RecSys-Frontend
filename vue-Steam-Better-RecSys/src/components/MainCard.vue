@@ -2,32 +2,38 @@
     <div class="d-flex flex-column flex-grow-1">
         <div class="wrapper mx-2" v-if="games.length !== 0">
             <div
-                    class="d-flex justify-content-center mb-3"
-                    v-for="game in games"
+                class="d-flex justify-content-center mb-3"
+                v-for="game in games"
             >
                 <GameCard
-                        :title="game.title"
-                        :id="game.id"
-                        :game-id="game.gameId"
-                        :name-slug="game.nameSlug"
-                        :isActive="this.selectedGames.includes(game.gameId)"
-                        @select-game="handleSelect"
-                        @delete-game="handleDelete"
+                    :title="game.title"
+                    :id="game.id"
+                    :game-id="game.gameId"
+                    :name-slug="game.nameSlug"
+                    :isActive="this.selectedGames.includes(game.gameId)"
+                    @select-game="handleSelect"
+                    @delete-game="handleDelete"
                 />
             </div>
         </div>
         <div
-                class="d-flex flex-row flex-fill justify-content-center align-items-center mx-3 mb-3"
-                v-if="games.length !== 0 && games.length >= 50 && offset < (limit - 50)"
+            class="d-flex flex-row flex-fill justify-content-center align-items-center mx-3 mb-3"
+            v-if="
+                games.length !== 0 && games.length >= 50 && offset < limit - 50
+            "
         >
-            <button role="button" class="btn btn-outline-primary flex-grow-1" @click="getNextFilteredGames()">
-                <font-awesome-icon icon="fas fa-magnifying-glass"/>
+            <button
+                role="button"
+                class="btn btn-outline-primary flex-grow-1"
+                @click="getNextFilteredGames()"
+            >
+                <font-awesome-icon icon="fas fa-magnifying-glass" />
                 Show More
             </button>
         </div>
         <div
-                class="d-flex flex-row flex-fill justify-content-center align-items-center"
-                v-if="games.length === 0"
+            class="d-flex flex-row flex-fill justify-content-center align-items-center"
+            v-if="games.length === 0"
         >
             <span>Ooops.. :( nothing found, try other tags</span>
         </div>
@@ -36,11 +42,11 @@
 </template>
 
 <script>
-import {mapActions, mapState} from 'pinia';
+import { mapActions, mapState } from 'pinia';
 import useGamesStore from '@/stores/games';
 import Pagination from '@/components/UI/Pagination.vue';
 import GameCard from '@/components/GameCard.vue';
-import useTagsStore from "@/stores/tags";
+import useTagsStore from '@/stores/tags';
 
 export default {
     name: 'mainCard',
@@ -56,7 +62,13 @@ export default {
         ]),
         ...mapActions(useTagsStore, ['getMapByArray']),
         async render() {
-            await this.getFilteredGamesStore(new Map(), this.getMapByArray(), null, null, 0);
+            await this.getFilteredGamesStore(
+                new Map(),
+                this.getMapByArray(),
+                null,
+                null,
+                0
+            );
         },
         handleSelect(id) {
             this.selectedGames.push(id);
@@ -69,7 +81,12 @@ export default {
         },
     },
     computed: {
-        ...mapState(useGamesStore, ['games', 'offset', 'limit', "selectedGames"]),
+        ...mapState(useGamesStore, [
+            'games',
+            'offset',
+            'limit',
+            'selectedGames',
+        ]),
     },
     mounted() {
         this.render();
