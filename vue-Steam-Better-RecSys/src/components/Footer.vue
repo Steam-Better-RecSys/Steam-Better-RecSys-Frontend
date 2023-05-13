@@ -47,7 +47,7 @@ export default {};
 @import '../styles/main.css';
 
 footer {
-    background: var(--additional-bg-color);
+    background: var(--contrast-bg-color);
     color: var(--main-text-color);
 }
 p {

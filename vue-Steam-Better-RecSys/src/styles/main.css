@@ -140,8 +140,8 @@ a:hover {
 
 input {
     background-color: var(--bg-color);
-    border-width: 1px;
-    border-color: var(--additional-bg-color);
+    border-width: 2px;
+    border-color: var(--contrast-bg-color);
     color: var(--main-theme-color);
 }
 

@@ -128,7 +128,7 @@ export default {
 
 .container:hover {
     box-shadow: 0 0 0 4px var(--main-theme-color);
-    -webkit-box-shadow: 0 0 0 4px var(--additional-bg-color);
+    -webkit-box-shadow: 0 0 0 4px var(--contrast-bg-color);
     cursor: pointer;
     transform: scale(1.05);
     -webkit-transform: scale(1.05);

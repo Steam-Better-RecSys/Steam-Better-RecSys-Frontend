@@ -1,13 +1,13 @@
 :root {
-    --bg-color: #121212;
+    --bg-color: #263238;
     --bg-color-rgb: 255, 255, 255;
-    --additional-bg-color: #232d39;
+    --additional-bg-color: #37474f;
+    --contrast-bg-color: #455a64;
 
     --main-text-color: #fff;
-    --contast-text-color: #121212;
+    --contast-text-color: #263238;
 
     --main-theme-color: #d1c4e9;
-    --secondary-theme-color: #b39ddb;
     --dark-theme-color: #9575cd;
     --light-theme-color: #ede7f6;
 }
