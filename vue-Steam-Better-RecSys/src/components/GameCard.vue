@@ -14,6 +14,7 @@
             @error="setImage($event.currentTarget)"
             @load="checkImage($event.currentTarget)"
             @click="setActive(gameId)"
+            @touchstart="setActive(gameId)"
         />
         <div class="centered disable-events" v-show="isBroken">
             <small
