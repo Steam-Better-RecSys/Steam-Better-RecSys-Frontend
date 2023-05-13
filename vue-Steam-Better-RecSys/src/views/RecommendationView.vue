@@ -47,7 +47,7 @@
                         @focus="this.setBlur($event)"
                         v-if="currentGameIndex < 9"
                     >
-                        <font-awesome-icon icon="fas fa-forward" />
+                        <font-awesome-icon icon="fas fa-face-meh" />
                         <span class="d-none d-sm-none d-md-block">Ignore</span>
                     </button>
                 </div>

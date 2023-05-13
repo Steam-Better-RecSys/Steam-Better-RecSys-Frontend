@@ -19,7 +19,8 @@ import {
     faUpRightFromSquare,
     faArrowDownWideShort,
     faArrowDownShortWide,
-    faTrash
+    faTrash,
+    faFaceMeh
 } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -40,7 +41,8 @@ library.add(
     faUpRightFromSquare,
     faArrowDownWideShort,
     faArrowDownShortWide,
-    faTrash
+    faTrash,
+    faFaceMeh
 );
 
 app.use(store);
