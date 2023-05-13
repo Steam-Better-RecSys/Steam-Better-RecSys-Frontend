@@ -15,8 +15,8 @@
             @load="checkImage($event.currentTarget)"
             @click="setActive(gameId)"
         />
-        <div class="centered disable-events text-blend" v-show="isBroken">
-            <small> {{ title }} </small>
+        <div class="centered disable-events" v-show="isBroken">
+            <small><p class="m-0 p-1 text-background">{{ title }}</p></small>
         </div>
         <div class="right-top" v-show="showButton">
             <button
@@ -138,11 +138,6 @@ export default {
 .container.active {
     box-shadow: 0 0 0 4px var(--main-theme-color);
     -webkit-box-shadow: 0 0 0 4px var(--main-theme-color);
-}
-
-.text-blend {
-    mix-blend-mode: lighten;
-    color: white;
 }
 
 .centered {

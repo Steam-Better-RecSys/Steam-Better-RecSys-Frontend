@@ -172,11 +172,40 @@ svg {
     overflow: visible;
 }
 
-div.tooltip-inner {
-    color: var(--main-text-color);
-    --bs-tooltip-bg: var(--additional-bg-color);
+.custom-tooltip {
+    position: relative;
 }
 
-div.tooltip-arrow {
-    --bs-tooltip-bg: var(--additional-bg-color);
+.custom-tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    opacity: 90%;
+    bottom: 120%;
+    left: 50%;
+    margin-left: -60px;
+    position: absolute;
+    z-index: 1;
+}
+
+.custom-tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.custom-tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--tooltip-bg) transparent transparent transparent;
+}
+
+.text-background {
+    display: inline-block;
+    color: white;
+    background: rgba(0, 0, 0, 0.2);
 }

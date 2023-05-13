@@ -10,4 +10,7 @@
     --main-theme-color: #9c27b0;
     --dark-theme-color: #7b1fa2;
     --light-theme-color: #ab47bc;
+
+    --tooltip-bg: #263238;
+    --tooltip-text: #fff;
 }
