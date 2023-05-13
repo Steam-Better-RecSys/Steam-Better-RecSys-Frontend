@@ -19,6 +19,7 @@
                 />
             </div>
             <div class="row d-flex justify-content-between mt-3 mb-2">
+                <!--
                 <div class="col-2 d-flex justify-content-center">
                     <button type="button" class="btn btn-primary flex-grow-1">
                         <font-awesome-icon icon="fas fa-ban" />
@@ -27,6 +28,7 @@
                         >
                     </button>
                 </div>
+                -->
                 <div class="col-2 d-flex justify-content-center">
                     <button
                         type="button"
@@ -59,6 +61,7 @@
                         <span class="d-none d-sm-none d-md-block">Like</span>
                     </button>
                 </div>
+                <!--
                 <div class="col-2 d-flex justify-content-center">
                     <button type="button" class="btn btn-primary flex-grow-1">
                         <font-awesome-icon icon="fas fa-heart" />
@@ -67,6 +70,7 @@
                         >
                     </button>
                 </div>
+                -->
             </div>
         </div>
     </div>
