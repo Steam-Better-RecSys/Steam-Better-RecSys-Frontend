@@ -6,27 +6,27 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            name: 'Steam Wizzard — All Games',
+            name: 'SteamWizzard — All Games',
             component: MainView,
         },
         {
             path: '/recommendation',
-            name: 'Steam Wizzard — Recommenations',
+            name: 'SteamWizzard — Recommenations',
             component: () => import('../views/RecommendationView.vue'),
         },
         {
             path: '/cookies',
-            name: 'Steam Wizzard — Cookie Policy',
+            name: 'SteamWizzard — Cookie Policy',
             component: () => import('../views/CookiesView.vue'),
         },
         {
             path: '/about',
-            name: 'Steam Wizzard — About',
+            name: 'SteamWizzard — About',
             component: () => import('../views/AboutView.vue'),
         },
         {
             path: '/privacy',
-            name: 'Steam Wizzard — Privacy Policy',
+            name: 'SteamWizzard — Privacy Policy',
             component: () => import('../views/PrivacyView.vue'),
         },
     ],

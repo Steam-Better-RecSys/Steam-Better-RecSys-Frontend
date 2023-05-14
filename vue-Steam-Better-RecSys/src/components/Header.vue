@@ -2,7 +2,7 @@
     <header class="header sticky-top p-1 text-center">
         <div @click="goHome()">
             <h1>
-                <b>Steam Wizzard</b><sup><small>β</small></sup>
+                SteamWizzard<sup><small>β</small></sup>
             </h1>
         </div>
     </header>
