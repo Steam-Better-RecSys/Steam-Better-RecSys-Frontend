@@ -7,7 +7,7 @@
         >
             <span>Loading...</span>
         </div>
-        <div class="col-10 col-sm-10 col-md-8 col-lg-6" v-if="isLoaded">
+        <div class="col-10 col-sm-10 col-md-8 col-lg-6 col-xl-4" v-if="isLoaded">
             <div class="d-flex justify-content-center row mt-4">
                 <recommendation-card
                     :name="recommendedGames[currentGameIndex].title"
