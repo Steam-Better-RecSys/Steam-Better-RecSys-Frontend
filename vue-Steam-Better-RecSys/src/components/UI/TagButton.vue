@@ -24,13 +24,6 @@
                         : this.$emit('deletionEvent', tag.id),
                 ]
             "
-            @touchstart="
-                [
-                    !isSelected
-                        ? this.$emit('selectionEvent', tag.id)
-                        : this.$emit('deletionEvent', tag.id),
-                ]
-            "
         >
             <span class="small">{{ tag.name }}</span>
         </button>
