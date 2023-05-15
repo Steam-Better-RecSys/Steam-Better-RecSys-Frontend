@@ -53,27 +53,26 @@ export default {
     border-color: var(--additional-bg-color);
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .btn-light:hover,
-    .selected .btn-light:hover {
-        color: var(--contast-text-color);
-        background: var(--dark-theme-color);
-        border-color: var(--dark-theme-color);
-    }
-    .btn-light:focus {
-        box-shadow: none;
-    }
-    .btn-light:active:focus {
-        color: var(--contast-text-color);
-        background: var(--dark-theme-color);
-        border-color: var(--dark-theme-color);
-        box-shadow: none;
-    }
+.btn-light:hover,
+.selected .btn-light:hover {
+    color: var(--contast-text-color);
+    background: var(--dark-theme-color);
+    border-color: var(--dark-theme-color);
 }
 
 .selected .btn {
     color: var(--contast-text-color);
     background: var(--light-theme-color);
     border-color: var(--light-theme-color);
+}
+
+.btn-light:focus {
+    box-shadow: none;
+}
+.btn-light:active:focus {
+    color: var(--contast-text-color);
+    background: var(--dark-theme-color);
+    border-color: var(--dark-theme-color);
+    box-shadow: none;
 }
 </style>
