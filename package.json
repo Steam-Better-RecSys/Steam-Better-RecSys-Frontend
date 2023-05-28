@@ -1,5 +1,36 @@
 {
-  "dependencies": {
-    "@vue/cli": "^5.0.8"
-  }
+    "name": "vue-steam-better-recsys",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "vite --host 0.0.0.0 --port 3000",
+        "build": "vite build",
+        "preview": "vite preview",
+        "test:unit": "vitest",
+        "lint": "eslint vue-Steam-Better-RecSys --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+        "format": "prettier --write vue-Steam-Better-RecSys"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-svg-core": "^6.4.0",
+        "@fortawesome/free-brands-svg-icons": "^6.4.0",
+        "@fortawesome/free-regular-svg-icons": "^6.4.0",
+        "@fortawesome/free-solid-svg-icons": "^6.4.0",
+        "@fortawesome/vue-fontawesome": "^3.0.3",
+        "@popperjs/core": "^2.11.7",
+        "axios": "^1.3.4",
+        "bootstrap": "^5.2.3",
+        "pinia": "^2.0.32",
+        "pinia-persists": "^1.2.0",
+        "vue": "^3.2.47",
+        "vue-router": "^4.1.6",
+        "vuetify": "^3.1.10"
+    },
+    "devDependencies": {
+        "@vitejs/plugin-vue": "^4.0.0",
+        "@vue/test-utils": "^2.3.0",
+        "jsdom": "^21.1.0",
+        "prettier": "2.8.8",
+        "vite": "^4.1.4",
+        "vitest": "^0.29.1"
+    }
 }
