@@ -209,3 +209,7 @@ svg {
     color: white;
     background: rgba(0, 0, 0, 0.2);
 }
+
+.spinner-border {
+    color: var(--main-theme-color);
+}
