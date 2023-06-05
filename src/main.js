@@ -39,6 +39,9 @@ import {
     faFaceGrinTears,
     faFilm,
     faBars,
+    faRobot,
+    faMap,
+    faDisplay,
 } from '@fortawesome/free-solid-svg-icons';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -79,6 +82,9 @@ library.add(
     faFaceGrinTears,
     faFilm,
     faBars,
+    faRobot,
+    faMap,
+    faDisplay,
 );
 
 app.use(store);

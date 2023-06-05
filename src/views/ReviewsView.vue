@@ -7,7 +7,7 @@
                     <input
                         type="text"
                         class="form-control"
-                        placeholder="Insert the link to the game for which you would like to process reviews..."
+                        placeholder="Steam link to a game for which you'd like to process reviews... e.g. https://store.steampowered.com/app/976010/I_hate_this_game/"
                         aria-label="GameSearch"
                         v-model="gameString"
                         @change="getReviews()"
@@ -39,7 +39,7 @@
                     <div class="col-6 mt-3">
                         <div class="d-flex flex-wrap justify-content-between">
                             <div
-                                class="word rounded-pill px-3 py-1 my-1"
+                                class="word rounded-pill px-2 py-1 mb-1"
                                 v-for="word in this.reviews['pos_top_words']"
                             >
                                 <span class="small">{{ word }}</span>
@@ -49,20 +49,20 @@
                     <div class="col-6 mt-3">
                         <div class="d-flex flex-wrap justify-content-between">
                             <div
-                                class="word rounded-pill px-3 py-1 my-1"
+                                class="word rounded-pill px-2 py-1 mb-1"
                                 v-for="word in this.reviews['neg_top_words']"
                             >
                                 <span class="small">{{ word }}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="mt-3 col-12 fw-light fst-italic">
+                    <div class="mt-3 mb-0 col-12 fw-light fst-italic">
                         <div v-if="!tip">
                             <p class="text-center m-0 p-0">Disclaimer.</p>
                             <ol>
-                                <li>Not all reviews are taken into account;</li>
                                 <li>It's OK when a "class" is both a plus and a minus;</li>
-                                <li>You can find out more about "class" if you hover over a "class".</li>
+                                <li>"Classes" are listed from the most important to the least.</li>
+                                <li>If the class is categorized as a disadvantage, then there are problems with this in the game. For example, poor narrative or level design.</li>
                             </ol>
                         </div>
                         <div v-if="tip">
@@ -103,7 +103,7 @@ export default {
                 'price': 'fas fa-sack-dollar',
                 'playtime': 'fas fa-hourglass-half',
                 'level design': 'fas fa-cube',
-                'soundtrack': 'fas fa-headphones',
+                'sound': 'fas fa-headphones',
                 'physics': 'fas fa-magnet',
                 'narrative': 'fas fa-book',
                 'fun': 'fas fa-wand-magic-sparkles',
@@ -111,27 +111,33 @@ export default {
                 'accessibility': 'fas fa-eye',
                 'relaxing': 'fas fa-couch',
                 'humor': 'fas fa-face-grin-tears',
-                'atmosphere': 'fas fa-film'
+                'atmosphere': 'fas fa-film',
+                'AI': 'fas fa-robot',
+                'UI': 'fas fa-display',
+                'world': 'fas fa-map'
             },
             textHint: {
-                'gameplay': 'fas fa-gamepad',
-                'balance': 'fas fa-dice',
-                'puzzles': 'fas fa-puzzle-piece',
+                'gameplay': 'The general elaboration of the gameplay. How well the elements of the game fit together.',
+                'balance': 'The complexity of the game and the overall balance. Isn\'t the randomness broken? Isn\'t it too easy?',
+                'puzzles': 'If there are puzzles in the game, are they clear? too simple? non-obvious?',
                 'optimization': 'Will the game run on a potato? Is everything OK with FPS? Will my computer explode?',
-                'bugs': 'fas fa-bug',
-                'art': 'fas fa-palette',
+                'bugs': 'The presence or absence of bugs in the game.',
+                'art': 'The overall quality of the picture in the game. Are the textures okay? Or soapy? Are the animations good? Or broken? And what about the lighting?',
                 'price': 'Does the price match the quality of the game?',
-                'playtime': 'fas fa-hourglass-half',
+                'playtime': 'Is the playing time optimal? Or is it too short/long?',
                 'level design': 'The architecture of the levels and maps. Is the navigation clear, is the goal clear, is everything visible and passable?',
-                'soundtrack': 'Music and sounds in the game. Does it fit? Is it cool? Is it even there?',
-                'physics': 'fas fa-magnet',
-                'narrative': 'The game has a good story, interesting dialogues and characters, and other narrative elements. If class is at a disadvantage, there\'s probably a problem with some of this.',
-                'fun': 'fas fa-wand-magic-sparkles',
+                'sound': 'Music and sounds in the game. Does it fit? Is it cool? Is it even there?',
+                'physics': 'Are the physics okay? or are the hitboxes too small and the cars go like clockwork?',
+                'narrative': 'The game has a good story, interesting dialogues and characters, lore?.',
+                'fun': 'Is the game fun to play? Do you want to play more?',
                 'controls': 'Is everything okay with the controls, e.g., is the movement smooth? Is there controller support?',
                 'accessibility': 'Accessibility settings. Can colors be adjusted? Are subtitles customizable? Is text readable? And other subtleties of accessibility.',
                 'relaxing': 'Can I play the game from the couch or do I have to strain myself?',
-                'humor': 'fas fa-face-grin-tears',
-                'atmosphere': 'fas fa-film'
+                'humor': 'Are there any jokes in the game? Are they good?',
+                'atmosphere': 'What is the atmosphere of the game? Does the environment create a sense of reality? Does everything fit into the setting?',
+                'AI': 'If the game has AI, is it smart or not so smart?',
+                'UI': 'Is everything okay with the display of the user interface?',
+                'world': 'Is the world around us interesting? Is it not empty? Are there any activities?'
             },
             loading: false,
             tip: null,
@@ -220,6 +226,17 @@ input:focus {
 
 span {
     color: var(--main-text-color)
+}
+
+::-webkit-input-placeholder {
+    font-size: 13px!important;
+}
+
+:-moz-placeholder {
+    font-size: 13px!important;
+}
+::-moz-placeholder {
+    font-size: 13px!important;
 }
 
 </style>
