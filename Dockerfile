@@ -6,8 +6,10 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY vue-Steam-Better-RecSys .
+COPY . .
 
 EXPOSE 3000
 
 CMD ["npm", "run", "start"]
+
+
