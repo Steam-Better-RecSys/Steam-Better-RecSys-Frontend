@@ -1,5 +1,5 @@
 <template>
-    <footer class="mt-auto d-flex flex-column align-items-center py-1">
+    <footer class="mt-auto d-flex flex-column align-items-center pt-1 pb-2">
         <div class="text-center my-0">
             <p>Questions or problems?</p>
             <p>
